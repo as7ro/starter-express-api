@@ -97,9 +97,11 @@
 }
 
 .hero-header {
-    background: url(../img/IMG_3777save.jpg) top right no-repeat;
+   
     background-size: cover;
+    background-position: center;
 }
+
 
 .service-item {
     position: relative;
