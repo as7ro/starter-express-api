@@ -97,8 +97,8 @@
 }
 
 .hero-header {
-    background: url(../img/azal.jpg) top right no-repeat;
-    
+    background: url(../img/IMG_3777save.jpg) top right no-repeat;
+    background-size: cover;
 }
 
 .service-item {

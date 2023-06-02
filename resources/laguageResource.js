@@ -21,6 +21,7 @@ export const langAz = {
   success: "Qeydiyyat ugurla tamamlandi!",
   //login bolmesi
   loginHeader: "giris et",
+  loginRes:"İstifadəçi adı və ya parol səhvdir!",
   //project bolmesi
   projectHeader: "proektlerimiz",
   //xeber bolmesi
@@ -49,6 +50,7 @@ export const langGe = {
   language:"DE",
   news:"Nachrichten",
   about:"Über uns",
+ 
   //errors
   acces_denied: "sizin ",
   //registerbolmesi
@@ -56,6 +58,7 @@ export const langGe = {
   success: "Anmeldung ist erfolgreich!",
   //lohin bolmesi
   loginHeader: "login",
+  loginRes:"İstifadəçi adı və ya parol səhvdir!",
   //project bolmesi
   projectHeader: "projects",
   //xeber bolmesi
