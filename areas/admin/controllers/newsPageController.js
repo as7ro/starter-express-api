@@ -3,7 +3,6 @@ import CategoryNews from "../../../models/newsCatModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
-
 const getNewsPage = async (req, res) => {
   const newses = await News.find({})
     .populate('categoryId')

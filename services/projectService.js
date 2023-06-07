@@ -19,7 +19,7 @@ export const getProjects = async (page, limit, language) => {
         description: project.descriptionAz
       }));
       break;
-    case 'ge':
+    case 'de':
       mappedProjects = projects.docs.map(project => ({
         ...project.toObject(),
         title: project.titleGe,

@@ -43,6 +43,7 @@
 
   <body>
     <!-- Topbar Start -->
+    <%- include("partials/_topbar")  %>
 
     <!-- Topbar End -->
 
@@ -53,7 +54,7 @@
       <!-- Blog Start -->
       <div class="container-fluid pt-5">
         <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-          <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5">Xeberler</h4>
+          <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5"><%=resources.news%></h4>
          
       </div>
         <div class="container ">
@@ -71,19 +72,19 @@
               <!-- Category Start -->
               <div class="mb-5">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-3">
-                  xeber axtar
+                  <%=resources.searchNews%>
                 </h4>
                 <form action="/news" method="GET" class="input-group">
-                  <input type="text" class="form-control p-3" name="search" placeholder="xeber axtar">
+                  <input type="text" class="form-control p-3" name="search" placeholder="<%=resources.searchNews%>">
                   <button class="btn btn-primary px-3" type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mt-3 mb-3">
-                  Categories
+                  <%=resources.newsCategory%>
                 </h4>
                 <div class="d-flex flex-column justify-content-start">
                   <form action="/news" method="GET" class="input-group">
                     <select id="categorySelect" class="form-select" name="category" aria-label="Güzel Seçenek Kutusu">
-                      <option value="" selected disabled>Seçenek Seçin</option>
+                      <option value="" selected disabled><%=resources.selectCategory%></option>
                       <% for(cat of cats) { %>
                         <option class="custom-option" value="<%= cat._id %>">
                           <%= cat.catName %>

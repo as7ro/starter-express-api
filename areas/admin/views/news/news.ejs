@@ -1,7 +1,7 @@
 <style>
-.pointer {
-    cursor: pointer;
-  }
+    .pointer {
+        cursor: pointer;
+    }
 </style>
 
 
@@ -11,7 +11,7 @@
     <div class="container mt-4">
         <h1>xeberlerin elave olunmasi</h1>
         <div class="card mt-4 ">
-            <div class="card-header bg-primary text-light pointer"onclick="toggleCardContent()">
+            <div class="card-header bg-primary text-light pointer" onclick="toggleCardContent()">
                 xeber elave etmek ucun klik edin
             </div>
             <div class="card-body bg-dark" id="cardContent" style="display: none;">
@@ -19,19 +19,23 @@
                 <form action="/admin/news" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label text-light">basliq az</label>
-                        <input type="text" class="form-control" placeholder="xenerin basliqi az" id="name" name="titleAz">
+                        <input type="text" class="form-control" placeholder="xenerin basliqi az" id="name"
+                            name="titleAz">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label text-light">basliq de</label>
-                        <input type="text" class="form-control" placeholder="xenerin basliqi de" id="name" name="titleGe">
+                        <input type="text" class="form-control" placeholder="xenerin basliqi de" id="name"
+                            name="titleGe">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label text-light">aciqlama az</label>
-                        <input type="text" class="form-control" placeholder="xeberin kontenti az"  name="descriptionAz">
+                        <textarea type="text" class="form-control" placeholder="xeberin kontenti az" name="descriptionAz"
+                            id="descriptionAz"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label text-light">aciqlama de</label>
-                        <input type="text" class="form-control" placeholder="xeberin kontenti de"  name="descriptionGe">
+                        <textarea type="text" class="form-control" placeholder="xeberin kontenti de" name="descriptionGe"
+                            id="descriptionDe"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label text-light">xeberin kategoriyasi</label>
@@ -63,62 +67,65 @@
             <div class="card-body bg-dark" id="cardContent1" style="display: none;">
                 <form action="/admin/newscat" method="POST">
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light" >kategoriya adi qeyd edin</label>
-                        <input type="text" placeholder="kategoriyanin adi az" class="form-control" id="name" name="catNameAz">
+                        <label for="name" class="form-label text-light">kategoriya adi qeyd edin</label>
+                        <input type="text" placeholder="kategoriyanin adi az" class="form-control" id="name"
+                            name="catNameAz">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light" >kategoriya adi qeyd edin</label>
-                        <input type="text" placeholder="kategoriyanin adi ge" class="form-control" id="name" name="catNameGe">
+                        <label for="name" class="form-label text-light">kategoriya adi qeyd edin</label>
+                        <input type="text" placeholder="kategoriyanin adi ge" class="form-control" id="name"
+                            name="catNameGe">
                     </div>
                     <button type="submit" class="btn btn-primary">elave et</button>
                 </form>
             </div>
         </div>
-<!-- category -->
-<div class="card mt-4">
-    <div class="card-header">
-        sira
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>title</th>
-                    <th>short description</th>
-                    <th>category</th>
-                </tr>
-            </thead>
-            <tbody>
-                <p class="d-none">
-                    <%= count=1 %>
-                </p>
-                <%for(cat of newsCats) { %>
-                    <tr>
-                        <td>
-                            <%=count++%>
-                        </td>
-                        <td>
-                            <%=cat.catNameAz %>
-                        </td>
-                        <td>
-                            <%=cat.catNameGe %>
-                        </td>
-                        
+        <!-- category -->
+        <div class="card mt-4">
+            <div class="card-header">
+                sira
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>title</th>
+                            <th>short description</th>
+                            <th>category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <p class="d-none">
+                            <%= count=1 %>
+                        </p>
+                        <%for(cat of newsCats) { %>
+                            <tr>
+                                <td>
+                                    <%=count++%>
+                                </td>
+                                <td>
+                                    <%=cat.catNameAz %>
+                                </td>
+                                <td>
+                                    <%=cat.catNameGe %>
+                                </td>
 
-                        <td  >
 
-                            <a href="news/updateCat/<%=cat._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                        
-                        </td>
-                    </tr>
-                    <% } %>
+                                <td>
 
-                        <% %>
-            </tbody>
-        </table>
-    </div>
-</div>
+                                    <a href="news/updateCat/<%=cat._id %>" class="btn btn-primary"><i
+                                            class="fa fa-pencil-alt"></i></a>
+
+                                </td>
+                            </tr>
+                            <% } %>
+
+                                <% %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 
@@ -157,15 +164,18 @@
                                     <%= news.categoryId.catNameAz %>
                                 </td>
 
-                                <td  >
-                                    <a href="news/<%=news._id %>" class="btn btn-success detail-btn"><i class="fa fa-eye"></i></a>
+                                <td>
+                                    <a href="news/<%=news._id %>" class="btn btn-success detail-btn"><i
+                                            class="fa fa-eye"></i></a>
 
-                                    <a href="news/update/<%=news._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                    <a href="news/update/<%=news._id %>" class="btn btn-primary"><i
+                                            class="fa fa-pencil-alt"></i></a>
                                     <form class="my-1" id="deleteForm" action="news/delete/<%=news._id%>" method="post">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
-                                          <i class="fa fa-trash"></i> 
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModal">
+                                            <i class="fa fa-trash"></i>
                                         </button>
-                                      </form>
+                                    </form>
 
 
                                 </td>
@@ -198,7 +208,17 @@
         <!-- Kullanıcı Ekleme Formu -->
 
     </div>
-
+    <script src="https://cdn.tiny.cloud/1/bp862hjypz1mklcxhz8h7d7jviyx43rf4lukys22x4i9lxfy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    
+  tinymce.init({
+    selector: '#descriptionAz , #descriptionDe',
+   
+    height: 500,
+    plugins: 'link image table',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | table',
+  });
+</script>
     <script>
         var confirmDeleteButton = document.getElementById("confirmDeleteButton");
         var deleteForm = document.getElementById("deleteForm");
@@ -225,6 +245,7 @@
                 cardContent1.style.display = "none";
             }
         }
+      
     </script>
 
     <%- include("../partials/_footer") %>

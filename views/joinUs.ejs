@@ -1,52 +1,83 @@
 <%- include("partials/_header") %>
 
 
-    <body>
-        <!-- Topbar Start -->
+  <body>
+    <!-- Topbar Start -->
+    <%- include("partials/_topbar") %>
 
-        <!-- Topbar End -->
-
-
-        <!-- Navbar Start -->
-        <%- include("partials/_navbar") %>
-
-            <!-- Navbar End -->
+      <!-- Topbar End -->
 
 
-            <div class="container">
-                <div class="mb-4 mt-5 d-flex justify-content-center">
-                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Bizə qoşul</h5>
-                    <h1 class="display-4"></h1>
-                </div>
-                <div class="row d-flex justify-content-center">
-                  <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card mb-3">
-                      <div class="card-body ">
-                        <iframe src="/files/<%= joinUs[0].files[0].file_id%>" width="200" height="200"></iframe>
+      <!-- Navbar Start -->
+      <%- include("partials/_navbar") %>
 
-                        <h5 class="card-title"><%= joinUs[0].files[0].file_id%></h5>
-                        <a href="/files/<%= joinUs[0].files[0].file_id%>" class="btn btn-primary" download>İndir</a>
+        <!-- Navbar End -->
+
+
+        <div class="container">
+          <div class="mb-4 mt-5 d-flex justify-content-center">
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">
+              <%=resources.joinUs%>
+            </h5>
+            <h1 class="display-4"></h1>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card mb-3">
+                <% if (typeof(lang) !=="undefined" ) { %>
+
+                  <% if (lang=="az" ) { %>
+                      <div class="card-body" style="text-align: center;">
+                        <iframe src="/files/<%= joinUs.files[1].file_id %>" width="200" height="200"></iframe>
+
+                        <h5 class="card-title">
+                          <%= joinUs.files[1].file_id %>
+                        </h5>
+                        <a href="/files/<%= joinUs.files[1].file_id %>" class="btn btn-primary" download>
+                          <i class="fas fa-download"></i>
+                          <%= resources.download %>
+                        </a>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card mb-3">
-                      <div class="card-body ">
-                        <iframe src="/files/<%= joinUs[0].files[1].file_id%>" width="200" height="200"></iframe>
+                      <% } else { %>
+                          <div class="card-body" style="text-align: center;">
+                            <iframe src="/files/<%= joinUs.files[0].file_id %>" width="200" height="200"></iframe>
 
-                        <h5 class="card-title"><%= joinUs[0].files[1].file_id%></h5>
-                        <a href="/files/<%= joinUs[0].files[1].file_id%>" class="btn btn-primary" download>İndir</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h3 class="card-title">Bizə qoşulmaq üçün</h3>
-                    <p class="card-text">Açıklama metni buraya gelecek.</p>
-                  </div>
-                </div>
+                            <h5 class="card-title">
+                              <%= joinUs.files[0].file_id %>
+                            </h5>
+                            <a href="/files/<%= joinUs.files[0].file_id %>" class="btn btn-primary" download>
+                              <i class="fas fa-download"></i>
+                              <%= resources.download %>
+                            </a>
+                          </div>
+                          <% } %>
+                            <% } else{%>
+                              <div class="card-body" style="text-align: center;">
+                                <iframe src="/files/<%= joinUs.files[1].file_id %>" width="200" height="200"></iframe>
+        
+                                <h5 class="card-title">
+                                  <%= joinUs.files[1].file_id %>
+                                </h5>
+                                <a href="/files/<%= joinUs.files[1].file_id %>" class="btn btn-primary" download>
+                                  <i class="fas fa-download"></i>
+                                  <%= resources.download %>
+                                </a>
+                              </div>
+                          
+                              <%}%>
+
               </div>
+            </div>
 
-                <!-- Footer Start -->
-                <%- include("partials/_footer") %>
+          </div>
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3  class="card-title">
+                <%-joinUs.description%> 
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Start -->
+        <%- include("partials/_footer") %>

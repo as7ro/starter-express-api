@@ -6,11 +6,11 @@ import validator from "validator";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: {
+  user_name: {
     type: String,
     default:""
   },
-  surname: {
+  user_surname: {
     type: String,
     default:""
   },
@@ -41,7 +41,7 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin','reyaset_heyyyeti_uzvleri','heqiqi_uzvler', 'assosiasiyali_uzvler', 'fexri_uzvler', 'komekci_uzvler'], // sadece 'user' veya 'admin' olabilir
+    enum: ['user', 'admin','kurslu_uzvler','rehber_uzv','reyaset_heyyyeti_uzvleri','heqiqi_uzvler', 'elaqedar_uzvler', 'fexri_uzvler', 'komekci_uzvler'], // sadece 'user' veya 'admin' olabilir
     default: 'user' // varsayılan olarak kullanıcı rolü
   },
   url:{
@@ -68,11 +68,11 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
   const user = this;
-  if (user.name) {
-    user.name = user.name.charAt(0).toUpperCase() + user.name.slice(1);
+  if (user.user_name) {
+    user.user_name = user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1);
   }
-  if (user.surname) {
-    user.surname = user.surname.charAt(0).toUpperCase() + user.surname.slice(1);
+  if (user.user_surname) {
+    user.user_surname = user.user_surname.charAt(0).toUpperCase() + user.user_surname.slice(1);
   }
   bcrypt.hash(user.password, 10, (err, hash) => {
     user.password = hash;

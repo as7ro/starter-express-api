@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import nodemailer from 'nodemailer';
 import fileUpload from "express-fileupload";
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
 
@@ -15,6 +15,7 @@ const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
     res.status(201).json({ user: user._id });
+    console.log(req.body)
   } catch (error) {
     console.log('ERROR', error);
 
@@ -66,7 +67,7 @@ const updateUser = async (req, res) => {
     user.descriptionAz = req.body.descriptionAz;
     user.descriptionGe = req.body.descriptionGe;
     user.fb = req.body.fb;
-    user.inst =  req.body.inst;
+    user.inst = req.body.inst;
     await user.save();
 
     res.status(200).redirect('/users/dashboard');
@@ -89,13 +90,15 @@ const loginUser = async (req, res) => {
     let same = false;
 
     if (user) {
+
       same = await bcrypt.compare(password, user.password);
+      console.log(same)
     } else {
-       req.session.data = {message:"fail qaiasdaasgsdv fjbf basjhfndjhfbD JHF JHDF DSFl"};
-    return  res.redirect('/login');
-     
+      req.session.data = { message: "" };
+      return res.redirect('/login');
+
     }
-     
+
 
     if (same) {
       const token = createToken(user._id);
@@ -105,18 +108,18 @@ const loginUser = async (req, res) => {
       });
       switch (user.role) {
         case "admin":
-          res.redirect('/admin');
-          break;
+          return res.redirect('/admin');
+        case "rehber_uzv":
+        case "reyaset_heyyeti_uzvleri":
+          return res.redirect('/users/dashboard');
         default:
-          res.redirect('/users/dashboard');
-          break;
+          return res.redirect('/');
       }
 
     } else {
-      res.status(401).json({
-        succeded: false,
-        error: 'Paswords are not matched',
-      });
+      req.session.data = { message: "" };
+      return res.redirect('/login');
+
     }
   } catch (error) {
     res.status(500).json({
@@ -140,16 +143,16 @@ const getDashboardPage = (req, res) => {
 
 //NodeMAIlder
 
- const showForgotPasswordForm = (req, res) => {
+const showForgotPasswordForm = (req, res) => {
   res.render('forgot-password', { error: null, success: null });
 };
 
- const sendPasswordResetEmail = async (req, res) => {
+const sendPasswordResetEmail = async (req, res) => {
   const { email } = req.body;
 
   try {
     const user = await User.findOne({ email });
-
+    console.log("FPPS", email)
     if (!user) {
       return res.render('forgot-password', {
         error: 'User not found. Please enter a valid email address.',
@@ -183,7 +186,7 @@ function generateResetToken() {
 
 function sendResetEmail(email, token) { // Renamed the function here
   const transporter = nodemailer.createTransport({
-    host: 'smtp.example.com', // Replace with your email provider's SMTP server hostname
+    host: 'smtp.gmail.com', // Replace with your email provider's SMTP server hostname
     port: 587, // Replace with the SMTP server port (typically 587 or 465)
     secure: false, // Set to true if you're using a secure connection (SSL/TLS)
     auth: {
@@ -191,7 +194,7 @@ function sendResetEmail(email, token) { // Renamed the function here
       pass: 'hjfvvpkrfozynclo', // Your email password
     },
   });
-  
+
 
   const mailOptions = {
     from: 'orkhangk@code.edu.az',
@@ -210,4 +213,4 @@ function sendResetEmail(email, token) { // Renamed the function here
 }
 
 
-export { createUser, loginUser, getDashboardPage,showForgotPasswordForm,sendPasswordResetEmail,updateUser };
+export { createUser, loginUser, getDashboardPage, showForgotPasswordForm, sendPasswordResetEmail, updateUser };

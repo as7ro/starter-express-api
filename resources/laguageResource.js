@@ -1,6 +1,11 @@
 //nav
 
 export const langAz = {
+  ///_________________NOTEEEE________________ ADMINLER REYASET HEYYETI UZVLERINNNEN OLACAQ  \
+  ///_________________note+___________________ ad ,soyad, istifadeci adi,email,password
+  ///ad:Vorname ,,soyad: Nachname ,, username:Benutzername ,,
+  
+  
   //nav
   home: "Ana Səhifə",
   login: 'Giriş',
@@ -8,7 +13,7 @@ export const langAz = {
   logout: "Çıxış",
   joinUs: "Bizə qoşul",
   reyaset: "Rəyasət Heyyəti",
-  uzvluk:"Üzvlər",
+  uzvluk:"Üzvlük",
   project:"Layihələr",
   dashboard:"Mənim səhifəm",
   language:"AZ",
@@ -19,6 +24,8 @@ export const langAz = {
   //registerbolmesi
   header: "registrasiya",
   success: "Qeydiyyat ugurla tamamlandi!",
+  registerUsername:"İstifadeçi adı",
+  registerPassword:"Parol",
   //login bolmesi
   loginHeader: "giris et",
   loginRes:"İstifadəçi adı və ya parol səhvdir!",
@@ -32,10 +39,39 @@ export const langAz = {
   uzvCategories: "CATEGORIES",
   //reyast heyyeti
   reyasetHeader: "reyaset heyyeti",
-  categories: "CATEGORIES"
-
-
+  categories: "CATEGORIES",
+  contact:"elaqe",
+  followme:"bizi izleyin",
+  registerr:"Qeydiyyatdan kecmemisiz?",
+  download:"Yukle",
+///uzvlerimiz haqqinda
+  uzvluk_uzvler:"Bizim üzvlərimiz",
+  searchNews:"Xəbər axtar",
+  newsCategory:"Kateqoriya",
+  selectCategory:"Kateqoriya seçin",
+  welcome:"Xoş gəlmişsiniz",
+  ///dashboard
+  userName:"Adınız",
+  userSurname:"Soyadınız",
+  userJobAz:"Peşəniz Azərbaycan dilində",
+  userJobDe:"Peşəniz Alman dilində",
+  userFb:"Facebook səhifəniz",
+  userİnst:"İnstagram Səhifəniz",
+  userPhoto:"Profil şəkliniz",
+  close:"Bağla",
+  save:"Yadda saxla",
+  personalData:"Şəxsi Məlumatlar",
+  huor:"butun huquqlar qorunur",
+  iconLink:"fi fi-az"
 }
+
+
+
+
+
+
+
+
 export const langGe = {
   //nav
   home: "Startseite",
@@ -43,22 +79,30 @@ export const langGe = {
   register: 'Registrierung',
   logout: "Abmelden",
   reyaset:"Vorstand",
-  joinUs: "Jetzt Registrieren",
+  joinUs: "Machen Sie mit",
   uzvluk: "Mitgliedschaft",
   project:"Projekte",
   dashboard:"Mein DAMV",
   language:"DE",
   news:"Nachrichten",
   about:"Über uns",
+  searchNews:"Nachricht suchen",
+  newsCategory:"Kategorien",
+  
  
   //errors
   acces_denied: "sizin ",
   //registerbolmesi
   header: "registrasiya",
   success: "Anmeldung ist erfolgreich!",
+
+  registerUsername:"Benutzername",
+  registerPassword:"Password",
+  
+
   //lohin bolmesi
   loginHeader: "login",
-  loginRes:"İstifadəçi adı və ya parol səhvdir!",
+  loginRes:"Benutzername oder Password ist falsch",
   //project bolmesi
   projectHeader: "projects",
   //xeber bolmesi
@@ -69,7 +113,32 @@ export const langGe = {
   uzvCategories: "CATEGORIES",
   //reyaset heyyeti
   reyasetHeader: "reyasetdsadasd heyyeti",
-  categories: "CATEGORIES"
+  categories: "CATEGORIES",
+  contact:"kontakt",
+  followme:"Folgen Sie uns",
+  registerr:"Noch nicht registriert?",
+  download:"Herunterladen",
+
+  uzvluk_uzvler:"Unsere Mitgliedern",
+  selectCategory:"Wählen Sie Kategorie",
+  welcome:"Willkommen",
+  ///dashboard
+  userName:"Vorname",
+  userSurname:"Nachname",
+  userJobAz:"Beruf auf Aserbaidschanisch",
+  userJobDe:"Beruf auf Deutsch",
+  userFb:"Ihr Facebook",
+  userİnst:"Ihr İnstagram",
+  userPhoto:"Profilfoto",
+  close:"Schließen",
+  save:"Speichern",
+  personalData:"Persönliche Daten",
+  iconLink:"fi fi-de",
+
+  
+
+
+  huor:"Alle Rechte vorbehalten"
 }
 
 

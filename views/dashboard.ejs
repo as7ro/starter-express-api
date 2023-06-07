@@ -3,7 +3,8 @@
 
 <body>
     <!-- Topbar Start -->
-   
+    <%- include("partials/_topbar")  %>
+
     <!-- Topbar End -->
 
 
@@ -17,8 +18,8 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h3 class="d-inline-block text-primary text-uppercase border-bottom border-5">Welcome</h3>
-                <h1 class="display-4"><%= user.name%>   <%= user.surname%></h1>
+                <h3 class="d-inline-block text-primary text-uppercase border-bottom border-5"><%=resources.welcome%></h3>
+                <h1 class="display-4"><%= user.user_name%>   <%= user.user_surname%></h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -30,23 +31,21 @@
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4 fw-normal"><%= user.description%></p>
+                            <p class="fs-4 fw-normal"><%- user.description%></p>
                             <div class="d-flex mt-auto border-top p-4 justify-content-center">
                              
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%= user.fb%>"><i class="fab fa-facebook-f"> </i></a>
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%= user.inst%>"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <hr class="w-25 mx-auto">
-                            <h3>Patient Name</h3>
-                            <h6 class="fw-normal text-primary mb-3">Profession</h6>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                                melumatlari doldur
+                                <%=resources.personalData%>
                             </button>
                             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel">Haqqimda</h5>
+                                            
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         
@@ -55,44 +54,44 @@
                                             <form id="request" class="main-form" method="POST" action="/users/<%= user._id%>" enctype="multipart/form-data">
                                                 <!-- ad -->
                                                 <div class="mb-3">
-                                                    <label for="input1" class="form-label">ad</label>
+                                                    <label for="input1" class="form-label"><%=resources.userName%></label>
                                                     <input type="text" value="<%= user.name %>"  name="name"  class="form-control" >
                                                 </div>
                         
                                                 <!--soyad -->
                                                 <div class="mb-3">
-                                                    <label for="input" class="form-label">soyad</label>
+                                                    <label for="input" class="form-label"><%=resources.userSurname%></label>
                                                     <input type="text"  value="<%= user.surname %>" name="surname" class="form-control" >
                                                 </div>
                                                 <!-- haqqimda -->
                                                 <div class="mb-3">
-                                                    <label for="input" class="form-label">haqqimda az</label>
-                                                    <textarea  style="text-align:left !important;" class="form-control" id="exampleFormControlTextarea1"  name="descriptionAz" rows="3">
-                                                        <%= user.descriptionAz  %>
+                                                    <label for="input" class="form-label"><%=resources.userJobAz%></label>
+                                                    <textarea  style="text-align:left !important;" class="form-control" id="editor1"  name="descriptionAz" rows="3">
+                                                        <%- user.descriptionAz  %>
                                                     </textarea>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="input" class="form-label">haqqimda de</label>
-                                                    <textarea  style="text-align:left !important;" class="form-control" id="exampleFormControlTextarea1"  name="descriptionGe" rows="3">
-                                                        <%= user.descriptionGe  %>
+                                                    <label for="input" class="form-label"><%=resources.userJobDe%></label>
+                                                    <textarea  style="text-align:left !important;" class="form-control" id="editor2"  name="descriptionGe" rows="3">
+                                                        <%- user.descriptionGe  %>
                                                     </textarea>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="input1" class="form-label">facebook</label>
+                                                    <label for="input1" class="form-label"><%=resources.userFb%></label>
                                                     <input type="text" value="<%= user.fb %>"  name="fb"  class="form-control" >
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="input1" class="form-label">instagram</label>
+                                                    <label for="input1" class="form-label"><%=resources.userİnst%></label>
                                                     <input type="text" value="<%= user.inst %>"  name="inst"  class="form-control" >
                                                 </div>
                                                 <!-- Resim Girişi -->
                                                 <div class="mb-3">
-                                                    <label for="imageInput" class="form-label">profil fotosu</label>
+                                                    <label for="imageInput" class="form-label"><%=resources.userPhoto%></label>
                                                     <input type="file" name="image" class="form-control" >
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%=resources.close%></button>
+                                                    <button type="submit" class="btn btn-primary"><%=resources.save%></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -107,7 +106,19 @@
         </div>
     </div>
     <!-- Testimonial End -->
-
+    <script src="/ckeditor/ckeditor.js"></script>
+<script>
+  
+  CKEDITOR.replace('editor1',{
+    entities: false,
+  });
+  CKEDITOR.replace('editor2',{
+  
+    removePlugins: 'trackchanges',
+    entities: false,
+  });
+  
+  </script>
 
     <!-- Footer Start -->
     <%- include("partials/_footer")  %>

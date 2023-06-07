@@ -1,7 +1,7 @@
 import News from "../models/newsModel.js";
 import CategoryNews from "../models/newsCatModel.js";
 import * as newsService from "../services/newsService.js";
-
+import * as Defaults from "../config/defaults.js"
 const createNews =async (req,res)=>{
   try {
     const news =await News.create(req.body);
@@ -44,7 +44,7 @@ const getAllNews = async (req, res) => {
   try {
     const searchTerm = req.query.search || '';
     const page = parseInt(req.query.page) || 1;
-    const limit = 6;
+    const limit = 9;
     const skipCount = (page - 1) * limit;
 
     const category = req.query.category;
@@ -63,7 +63,7 @@ const getAllNews = async (req, res) => {
     const totalNewsCount = await News.countDocuments(query);
     const totalPages = Math.ceil(totalNewsCount / limit);
 
-    const language = req.cookies.language || 'az';
+    const language = req.cookies.language || Defaults.defaultLanguage;
 
     const news = await News.find(query)
       .populate('categoryId', 'catNameAz catNameGe')
@@ -84,7 +84,7 @@ const getAllNews = async (req, res) => {
             };
           });
           break;
-        case 'ge':
+        case 'de':
           mappedNews = news.map((newsItem) => {
             const formattedDate = newsItem.createdAt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' });
             return {
@@ -117,7 +117,7 @@ const getAllNews = async (req, res) => {
           catName: cats.catNameAz,
         }));
         break;
-      case 'ge':
+      case 'de':
         mappedCats = cats.map(cats => ({
           ...cats.toObject(),
           catName: cats.catNameGe,
@@ -184,7 +184,7 @@ const getNewsDetail = async (req, res) => {
           description: news.descriptionAz
         }));
         break;
-      case 'ge':
+      case 'de':
         mappedNews = latestNews.map(news => ({
           ...news.toObject(),
           title: news.titleGe,
@@ -210,7 +210,7 @@ switch (language) {
     }
     
     break;
-  case 'ge':
+  case 'de':
     mappedNew={
       ...news_._doc,
       title : news_.titleGe,

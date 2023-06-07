@@ -22,6 +22,7 @@ const setRoutes = (app) => {
   
 
     app.use('/admin', roleFilter('admin'));
+    app.use('/users/dashboard',roleFilter('rehber_uzv','reyaset_heyyeti_uzvleri'));
   
     app.use("/", pageRoute);
     app.use("/news", newsRoute);

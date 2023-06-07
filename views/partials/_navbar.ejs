@@ -9,53 +9,59 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-          
+
           <a href="/" class="nav-item nav-link <%=link==="index" && "active" %>"><%=resources.home%></a>
           <a href="/about" class="nav-item nav-link <%=link==="about" && "active" %>"><%=resources.about%></a>
           <a href="/joinUs" class="nav-item nav-link <%=link==="joinUs" && "active" %>"><%=resources.joinUs%></a>
 
           <a href="/members" class="nav-item nav-link <%=link==="members" && "active" %>"><%=resources.reyaset%></a>
-          <a href="/allMembers" class="nav-item nav-link <%=link==="allMembers" && "active" %>"><%=resources.uzvluk%></a>
+          <a href="/allMembers" class="nav-item nav-link <%=link==="allMembers" && "active" %>"><%=resources.uzvluk%>
+          </a>
 
           <a href="/news" class="nav-item nav-link <%=link==="news" && "active" %>"><%=resources.news%></a>
           <a href="/projects" class="nav-item nav-link <%=link==="projects" && "active" %>"><%=resources.project%></a>
 
 
-          <% if(user) { %>
-
-            <a href="/users/dashboard" class="nav-item nav-link <%=link==="dashboard" && "active" %>"><%=resources.dashboard%></a>
-            <a href="/logout" class="nav-item nav-link"> <%=resources.logout%> </a>
-
-              <% if(user.role=="admin") { %>
-
-                <a href="/admin" class="nav-item nav-link ">Admin</a>
-            
-    
-                  
-    
-                <% }%>
-
-                
+          <% if (user) { %>
+            <% if (user.role === "rehber_uzv" || user.role === "reyaset_heyyyeti_uzvleri") { %>
+              <a href="/users/dashboard" class="nav-item nav-link <%= link === 'dashboard' ? 'active' : '' %>">
+                <%= resources.dashboard %>
+              </a>
+              
+              <a href="/logout" class="nav-item nav-link">
+                <%= resources.logout %>
+              </a>
+            <% } else if (user.role === "admin") { %>
+              <a href="/admin" class="nav-item nav-link">Admin</a>
+              
+              <a href="/logout" class="nav-item nav-link">
+                <%= resources.logout %>
+              </a>
+            <% } else { %>
+              <a href="/logout" class="nav-item nav-link">
+                <%= resources.logout %>
+              </a>
+            <% } %>
+          <% } else { %>
+            <a href="/login" class="nav-item nav-link <%= link === 'login' ? 'active' : '' %>">
+              <%= resources.login %>
             </a>
-            <% }else{ %>
+          <% } %>
+                        <!--  -->
 
-              <a href="/login" class="nav-item nav-link <%=link==="login" && "active" %>"> <%=resources.login%>
-              </a>
-              <a href="/register" class="nav-item nav-link <%=link==="register" && "active" %>">
-                <%=resources.register%> 
-              </a>
-              <% } %>
 
-             <div class="dropdown mt-4 mx-1" style="margin-top: 1.4rem !important;">
-  <button class="btn btn-secondary dropdown-toggle custom-dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fas fa-globe"></i> <%=resources.language%>
-  </button>
-  <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="languageDropdown">
-    <li><a class="dropdown-item language-dropdown-item changeLang" href="#" onclick="changeLanguage('az')">AZ</a></li>
-    <li><a class="dropdown-item language-dropdown-item changeLang" href="#" onclick="changeLanguage('de')">DE</a></li>
-    <li><a class="dropdown-item language-dropdown-item changeLang" href="#" onclick="changeLanguage('tr')">TR</a></li>
-  </ul>
-</div>
+                        <div class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span
+                              class="<%=resources.iconLink%>"></span>
+                            <%=resources.language%>
+                          </a>
+                          <div class="dropdown-menu m-0">
+                            <a href="" class="dropdown-item changeLang" onclick="changeLanguage('az')"><span
+                                class="fi fi-az"></span> Az</a>
+                            <a href="" class="dropdown-item changeLang" onclick="changeLanguage('de')"><span
+                                class="fi fi-de"></span> De</a>
+                          </div>
+                        </div>
 
         </div>
       </div>
@@ -64,42 +70,44 @@
 </div>
 <script>
 
-function changeLanguage(lang) {
-  var currentUrl = encodeURIComponent(window.location.href);
+  function changeLanguage(lang) {
+    var currentUrl = encodeURIComponent(window.location.href);
 
-  // Modify the href attribute of each dropdown item
-  var dropdownItems = document.getElementsByClassName('changeLang');
-  for (var i = 0; i < dropdownItems.length; i++) {
-    var dropdownItem = dropdownItems[i];
-    var returnUrl = dropdownItem.getAttribute('data-lang') === lang ? currentUrl : 'CurentUrl';
-    var modifiedUrl = '/changeLanguage?lang=' + lang + '&returnUrl=' + currentUrl;
-    dropdownItem.setAttribute('href', modifiedUrl);
+    // Modify the href attribute of each dropdown item
+    var dropdownItems = document.getElementsByClassName('changeLang');
+    for (var i = 0; i < dropdownItems.length; i++) {
+      var dropdownItem = dropdownItems[i];
+      var returnUrl = dropdownItem.getAttribute('data-lang') === lang ? currentUrl : 'CurentUrl';
+      var modifiedUrl = '/changeLanguage?lang=' + lang + '&returnUrl=' + currentUrl;
+      dropdownItem.setAttribute('href', modifiedUrl);
+    }
+
+    // // Toggle dropdown menu
+    // var dropdownMenu = document.querySelector('.custom-dropdown-menu');
+    // var dropdownToggle = document.querySelector('.custom-dropdown-toggle');
+    // dropdownMenu.classList.toggle('show');
+    // dropdownToggle.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
   }
-  
-  // Toggle dropdown menu
-  var dropdownMenu = document.querySelector('.custom-dropdown-menu');
-  var dropdownToggle = document.querySelector('.custom-dropdown-toggle');
-  dropdownMenu.classList.toggle('show');
-  dropdownToggle.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
-}
 
-// Close dropdown menu when clicking outside
-document.addEventListener('click', function (event) {
-  var dropdownToggle = document.querySelector('.custom-dropdown-toggle');
-  var dropdownMenu = document.querySelector('.custom-dropdown-menu');
+  // Close dropdown menu when clicking outside
+  // document.addEventListener('click', function (event) {
+  //   var dropdownToggle = document.querySelector('.custom-dropdown-toggle');
+  //   var dropdownMenu = document.querySelector('.custom-dropdown-menu');
 
-  if (!dropdownToggle.contains(event.target)) {
-    dropdownMenu.classList.remove('show');
-    dropdownToggle.setAttribute('aria-expanded', 'false');
-  }
-});
+  //   if (!dropdownToggle.contains(event.target)) {
+  //     dropdownMenu.classList.remove('show');
+  //     dropdownToggle.setAttribute('aria-expanded', 'false');
+  //   }
+  // });
 </script>
 <style>
-  
   .navbar-brand img {
-    width: 160px !important;   /* Logo genişliği */
-    height: 60px !important; /* Logo yüksekliği otomatik olarak ayarlanır */
-    margin-right: 10px !important; /* İsteğe bağlı: Logo ile metin arasında sağ boşluk */
+    width: 160px !important;
+    /* Logo genişliği */
+    height: 60px !important;
+    /* Logo yüksekliği otomatik olarak ayarlanır */
+    margin-right: 10px !important;
+    /* İsteğe bağlı: Logo ile metin arasında sağ boşluk */
   }
 
   .navbar-nav .nav-link {
@@ -117,6 +125,10 @@ document.addEventListener('click', function (event) {
   .custom-dropdown-menu {
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu {
+    min-width: 5rem !important;
   }
 
   .language-dropdown-item {

@@ -3,26 +3,20 @@
         <div class="row">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-decoration-none text-body pe-3" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
+                    <a class="text-decoration-none text-body pe-3" href=""><i class="bi bi-telephone me-2"></i><%=contact[0].tel  %></a>
                     <span class="text-body">|</span>
-                    <a class="text-decoration-none text-body px-3" href=""><i class="bi bi-envelope me-2"></i>info@example.com</a>
+                    <a class="text-decoration-none text-body px-3" href=""><i class="bi bi-envelope me-2"></i><%=contact[0].gmail %></a>
                 </div>
             </div>
             <div class="col-md-6 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-body px-2" href="">
-                        <i class="fab fa-facebook-f"></i>
+                    <a class="text-body fb px-2"  href="<%=contact[0].fb%>">
+                        <i class="fab fa-facebook-f" id="fb"></i>
                     </a>
-                    <a class="text-body px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-body px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-body px-2" href="">
+                    <a class="text-body px-2" href="<%=contact[0].inst%>">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-body ps-2" href="">
+                    <a class="text-body ps-2" href="<%=contact[0].youtube%>">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -30,3 +24,23 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    .fa-facebook-f:hover{
+       color: blue !important
+    }
+    .fa-instagram:hover{
+        color: darkmagenta;
+    }
+    .fa-youtube:hover{
+        color: red;
+    }
+    .bi-telephone:hover{
+        color: black;
+
+    }
+    .bi-envelope:hover{
+        color: black;
+    }
+</style>

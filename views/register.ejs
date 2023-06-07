@@ -18,7 +18,8 @@
   </style>
 <body>
     <!-- Topbar Start -->
-    
+    <%- include("partials/_topbar")  %>
+
     <!-- Topbar End -->
 
 
@@ -35,12 +36,16 @@
                 <form   action="users/register" method="POST">
                     <div class="row g-3">
                         <div class="text-center mx-auto mb-3" style="max-width: 500px;">
-                            <h2 class="d-inline-block text-primary text-uppercase border-bottom border-5">Register</h2>
+                            <h2 class="d-inline-block text-primary text-uppercase border-bottom border-5"><%=resources.register%></h2>
                             
                         </div>
-
                         <div class="col-12 col-sm-12">
-                            <input type="text" name="username" class="form-control bg-light border-0" placeholder="Username" style="height: 55px;">
+                          <input type="text" name="user_name" class="form-control bg-light border-0" placeholder="<%=resources.userName%>" style="height: 55px;">
+                      </div><div class="col-12 col-sm-12">
+                        <input type="text" name="user_surname" class="form-control bg-light border-0" placeholder="<%=resources.userSurname%>" style="height: 55px;">
+                     </div>
+                        <div class="col-12 col-sm-12">
+                            <input type="text" name="username" class="form-control bg-light border-0" placeholder="<%=resources.registerUsername%>" style="height: 55px;">
                         </div>
                         <div class="col-md-12">
                             <div style="display: none;" class="alert alert-danger" id="username"></div>
@@ -52,13 +57,13 @@
                             <div style="display: none;" class="alert alert-danger" id="email"></div>
                          </div>
                         <div class="col-md-12">
-                            <input type="password" name="password" class="form-control bg-light border-0" placeholder="Password" style="height: 55px;">
+                            <input type="password" name="password" class="form-control bg-light border-0" placeholder="<%=resources.registerPassword%>" style="height: 55px;">
                         </div>
                         <div class="col-md-12">
                             <div style="display: none;" class="alert alert-danger" id="password"></div>
                          </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                            <button class="btn btn-primary w-100 py-3" type="submit"><%=resources.register%></button>
                         </div>
                     </div>
                 </form>
@@ -96,7 +101,10 @@
           emailError.style.display = "none"
           passwordError.style.display = "none"
           usernameError.style.display = "none"
-      
+          
+
+          const user_name = form.user_name.value;
+          const user_surname = form.user_surname.value
           const email = form.email.value;
           const password = form.password.value;
           const username = form.username.value;
@@ -104,7 +112,7 @@
           try {
             const res = await fetch('users/register', {
               method: "POST",
-              body: JSON.stringify({ email, password, username }),
+              body: JSON.stringify({ user_name, user_surname, email, password, username }),
               headers: { "Content-Type": "application/json" }
             });
       

@@ -12,7 +12,7 @@ export const getNews = async (language) => {
         description: news.descriptionAz
       }));
       break;
-    case 'ge':
+    case 'de':
         mappepNews = news.map(news => ({
         ...news.toObject(),
         title: news.titleGe,
