@@ -5,7 +5,6 @@ import nodemailer from 'nodemailer';
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-import { DATE } from "mysql/lib/protocol/constants/types.js";
 
 
 
