@@ -2,28 +2,34 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>projecti guncellemek</h1>
+        <h1>Layihəni güncəlləmək</h1>
 
         <div class="card mt-4">
-            <div class="card-header">
-               project
-            </div>
+          
             <div class="card-body">
                 <form action="<%=project._id%>" method="post" >
                     <div class="mb-3">
-                        <label for="name" class="form-label">title</label>
-                        <input type="text" class="form-control" id="name" value="<%=project.title %>" name="title">
+                        <label for="name" class="form-label">Başlıq Azərbaycan dilində</label>
+                        <input type="text" class="form-control" id="name" value="<%=project.titleAz %>" name="titleAz">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">aciqlama</label>
-                        <input type="description" class="form-control"  value="<%=project.description  %>" name="description">
+                        <label for="name" class="form-label">Başlıq Alman dilində</label>
+                        <input type="text" class="form-control" id="name" value="<%=project.titleGe %>" name="titleGe">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">aciqlama</label>
+                        <label for="description" class="form-label">Açıqlama Azərbaycan dilində</label>
+                        <input type="description" class="form-control"  value="<%=project.descriptionAz  %>" name="descriptionAz">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıqlama Alman dilində</label>
+                        <input type="description" class="form-control"  value="<%=project.descriptionGe  %>" name="descriptionGe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Video linki</label>
                         <input type="description" class="form-control"  value="<%=project.videoUrl  %>" name="videoUrl">
                     </div>
                  
-                    <button type="submit" class="btn btn-primary">update</button>
+                    <button type="submit" class="btn btn-primary">Güncəllə</button>
                 </form>
             </div>
         </div>

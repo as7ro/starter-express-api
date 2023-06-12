@@ -9,36 +9,36 @@
     
         <!-- Main Content -->
         <div class="container mt-4">
-            <h1>projektin elave olunmasi</h1>
+            <h1>Layihələr səhifəsi</h1>
             <div class="card mt-4 ">
                 <div class="card-header bg-primary text-light pointer"onclick="toggleCardContent()">
-                   project elave etmek ucun klik edin
+                   Layihə elave etmek üçün klik edin.
                 </div>
                 <div class="card-body bg-dark" id="cardContent" style="display: none;">
     
                     <form action="/admin/projects" method="POST">
                         <div class="mb-3">
-                            <label for="name" class="form-label text-light">basliq az</label>
-                            <input type="text" class="form-control" placeholder="projectin basliqi az" id="name" name="titleAz">
+                            <label for="name" class="form-label text-light">Layihənin adı Azərbaycan dilində </label>
+                            <input type="text" class="form-control" placeholder="basliq Az" id="name" name="titleAz">
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label text-light">basliq dee</label>
-                            <input type="text" class="form-control" placeholder="projectin basliqi az" id="name" name="titleGe">
+                            <label for="name" class="form-label text-light">Layihənin adı Alman dilində</label>
+                            <input type="text" class="form-control" placeholder="basliq De" id="name" name="titleGe">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-light">aciqlama az</label>
-                            <input type="text" class="form-control" placeholder="projectin kontenti"  name="descriptionAz">
+                            <label for="email" class="form-label text-light">Layihənin içəriyi Azərbaycan dilində</label>
+                            <input type="text" class="form-control" placeholder="içərik Az"  name="descriptionAz">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-light">aciqlama de</label>
-                            <input type="text" class="form-control" placeholder="projectin kontenti"  name="descriptionGe">
+                            <label for="email" class="form-label text-light">Layihənin içəriyi Alman dilində</label>
+                            <input type="text" class="form-control" placeholder="içərik De"  name="descriptionGe">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-light">video linki</label>
-                            <input type="text" class="form-control" placeholder="projectin video linki"  name="videoUrl">
+                            <label for="email" class="form-label text-light">Layihə videosunun linki</label>
+                            <input type="text" class="form-control" placeholder="video linki"  name="videoUrl">
                         </div>
                    
-                        <button type="submit" class="btn btn-primary">elave et</button>
+                        <button type="submit" class="btn btn-primary">əlavə et</button>
                     </form>
                 </div>
             </div>
@@ -46,15 +46,16 @@
             <!-- Kullanıcı Listesi -->
             <div class="card mt-4">
                 <div class="card-header">
-                    sira
+                    Mövcud Layihələr
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>adi</th>
-                                <th>aciqlamasi</th>
+                                <th>başlıq Azərbaycan dilində</th>
+                                <th>başlıq Alman dilində</th>
+                                <th>ayarlar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,10 +68,10 @@
                                         <%=count++%>
                                     </td>
                                     <td>
-                                        <%=project.title %>
+                                        <%=project.titleAz %>
                                     </td>
                                     <td>
-                                        <%=project.description %>
+                                        <%=project.titleGe %>
                                     </td>
                                    
     
@@ -99,14 +100,14 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmDeleteModalLabel">Silme İşlemi Onayı</h5>
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Gerçekten silmek istediğinize emin misiniz?</p>
+                            <p>Həqiqətən silmək istəyirsən?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
                             <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
                         </div>
                     </div>

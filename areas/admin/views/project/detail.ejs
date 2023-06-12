@@ -3,14 +3,12 @@
     <!-- Main Content -->
     <div class="container mt-4">
         <h1>
-            <%= project.title%>
+            Layihə məlumatları
         </h1>
 
         <div class="card mt-4">
-            <div class="card-header">
-                project detail
-            </div>
-            <div class="card-body">
+           
+            <div class="card-body d-flex">
                 <div class="row">
 
                     <div class="col-md-4">
@@ -19,12 +17,15 @@
                         </iframe>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <h5 class="card-title">title: <%= project.title %>
-                    </h5>
-                    <p class="card-text">description: <%= project.description %>
+                <div class="col-md-8 " style="margin-left: 150px;">
+                    <p class="card-title"><b>Başlıq Azərbaycan dilində : </b> <%= project.titleAz %>
                     </p>
-
+                    <p class="card-text"><b>Başlıq Alman dilində : </b><%= project.titleGe %>
+                    </p>
+                    <p class="card-text"><b>Açıqlama Alman dilində : </b><%= project.descriptionAz %>
+                    </p>
+                    <p class="card-text"><b>Açıqlama Alman dilində : </b><%= project.descriptionGe %>
+                    </p>
                 </div>
             </div>
         </div>

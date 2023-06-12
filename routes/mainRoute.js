@@ -21,9 +21,9 @@ const setRoutes = (app) => {
     app.use("*", userResource);
   
 
-    app.use('/admin', roleFilter('admin'));
-    app.use('/users/dashboard',roleFilter('rehber_uzv','reyaset_heyyeti_uzvleri'));
-  
+    app.use('/admin', roleFilter(['admin']))
+    app.use('/users/dashboard', roleFilter(['reyaset_heyyeti_uzvleri', 'rehber_uzv']));  
+
     app.use("/", pageRoute);
     app.use("/news", newsRoute);
     app.use("/users", userRoute);
@@ -31,9 +31,7 @@ const setRoutes = (app) => {
     app.use("/contact",contactRoute)
     app.use("/projects",projectRoute)
     app.use("/admin", adminRoute)
-    app.get('/forgot-password', showForgotPasswordForm);
-
-    app.post('/forgot-password', sendPasswordResetEmail);
+    
     app.get("*", (req, res) => {
         res.status(404).render("404")
     });

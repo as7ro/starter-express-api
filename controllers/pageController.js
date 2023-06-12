@@ -3,16 +3,26 @@ import * as joinUsService from "../services/joinUsService.js"
 import * as aboutService from "../services/aboutService.js"
 import * as projectService from "../services/projectService.js"
 import * as newsService from "../services/newsService.js"
+import * as termsService from "../services/termsService.js"
+import * as userService from "../services/userService.js"
+
+
 
 const getIndexPage =async (req, res) => {
     const about = await aboutService.getAbout(req.cookies.language)
     const projects = await projectService.getProjects(req.cookies.language)
     const newses =  await newsService.getNews(req.cookies.language)
+    const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
+    const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
+   
+
     res.render('index', {
         link: "index",
         about,
         projects,
-        newses   
+        newses,
+        users,
+        president
     })
 }
 const getAboutPage = async (req, res) => {
@@ -47,13 +57,10 @@ const getMembersPage = async (req, res) => {
     })
 }
 const getAllMembersPage = async (req, res) => {
-    const roles = ['heqiqi_uzvler', 'assosiasiyali_uzvler', 'fexri_uzvler', 'komekci_uzvler']; // İstenen rolleri bir dizi içinde belirtin
-
-    const users = await User.find({ role: { $in: roles } }); // Belirtilen rolleri içeren kullanıcıları alın
-
+    const terms = await termsService.getTerms(req.cookies.language)
     res.render('allMembers', {
         link: "allMembers",
-        users
+        terms
     });
 }
 const getProjectsPage = async (req, res) => {

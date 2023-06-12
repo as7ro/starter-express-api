@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import { DATE } from "mysql/lib/protocol/constants/types.js";
 
 
 
@@ -92,7 +93,6 @@ const loginUser = async (req, res) => {
     if (user) {
 
       same = await bcrypt.compare(password, user.password);
-      console.log(same)
     } else {
       req.session.data = { message: "" };
       return res.redirect('/login');
@@ -147,6 +147,40 @@ const showForgotPasswordForm = (req, res) => {
   res.render('forgot-password', { error: null, success: null });
 };
 
+const getConfirmPassword = (req, res) => {
+const t =req.params.token.toString();
+
+  res.render('changePassword',{data:{t}})
+}
+
+const postConfirmPassword = async (req, res) => {
+  const token = req.body.token;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+
+  try {
+    const user = await User.findOne({ resetPasswordToken: token });
+
+    if (user) {
+      if (password === confirmPassword) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword;
+        await user.save();
+        res.redirect('/login');
+      } else {
+        // Parola doğrulama hatası
+        res.status(400).json({ error: 'Parolalar eşleşmiyor.' });
+      }
+    } else {
+      // Kullanıcı bulunamadı
+      res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
+    }
+  } catch (error) {
+    // İşleme hatası
+    res.status(500).json({ error: 'İşleme hatası.' });
+  }
+};
+
 const sendPasswordResetEmail = async (req, res) => {
   const { email } = req.body;
 
@@ -163,10 +197,14 @@ const sendPasswordResetEmail = async (req, res) => {
 
     user.resetPasswordToken = resetToken;
     user.resetPasswordTokenExpiry = Date.now() + 3600000;
-
+    
     await user.save();
 
-    sendResetEmail(user.email, resetToken); // Renamed the function here
+  
+    const siteDomain="http://localhost:3000"
+    const resetLink = `${siteDomain}/users/changePassword/${resetToken}`;
+    const emailContent = `Parolanızı sıfırlamak için aşağıdaki bağlantıya tıklayın:\n\n${resetLink}`;
+    sendResetEmail(user.email, emailContent); // Renamed the function here
 
     res.render('forgot-password', {
       success: 'Password reset email sent. Please check your email.',
@@ -180,7 +218,7 @@ const sendPasswordResetEmail = async (req, res) => {
 };
 
 function generateResetToken() {
-  const token = Math.random().toString(36).substr(2, 6).toUpperCase();
+  const token = Math.random().toString(36).substr(2, 6).toUpperCase()+DATE.toLocaleString().toString();
   return token;
 }
 
@@ -213,4 +251,13 @@ function sendResetEmail(email, token) { // Renamed the function here
 }
 
 
-export { createUser, loginUser, getDashboardPage, showForgotPasswordForm, sendPasswordResetEmail, updateUser };
+export {
+  createUser,
+  loginUser,
+  getDashboardPage,
+  showForgotPasswordForm,
+  sendPasswordResetEmail,
+  updateUser,
+  postConfirmPassword,
+  getConfirmPassword
+};

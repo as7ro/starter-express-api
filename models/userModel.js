@@ -41,11 +41,12 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin','kurslu_uzvler','rehber_uzv','reyaset_heyyyeti_uzvleri','heqiqi_uzvler', 'elaqedar_uzvler', 'fexri_uzvler', 'komekci_uzvler'], // sadece 'user' veya 'admin' olabilir
+    enum: ['user', 'admin','kurslu_uzvler','rehber_uzv','reyaset_heyyeti_uzvleri','heqiqi_uzvler', 'elaqedar_uzvler', 'fexri_uzvler', 'komekci_uzvler'], // sadece 'user' veya 'admin' olabilir
     default: 'user' // varsayılan olarak kullanıcı rolü
   },
   url:{
     type:String,
+    default:"https://libraries.usc.edu/themes/custom/usc_libraries_theme/dist/assets/profile.png"
   },
   image_id: {
     type: String,

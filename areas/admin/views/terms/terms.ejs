@@ -9,60 +9,79 @@
     
         <!-- Main Content -->
         <div class="container mt-4">
-            <!-- <div class="card mt-4 ">
+            <h1>Qaydalar səhifəsi</h1>
+            <div class="card mt-4 ">
                 <div class="card-header bg-primary text-light pointer"onclick="toggleCardContent()">
-                   project elave etmek ucun klik edin
+                   Qayda elave etmek üçün klik edin.
                 </div>
                 <div class="card-body bg-dark" id="cardContent" style="display: none;">
     
-                    <form action="/admin/contact" method="POST">
+                    <form action="/admin/terms" method="POST">
                         <div class="mb-3">
-                            <label for="name" class="form-label text-light">basliq</label>
-                            <input type="text" class="form-control" placeholder="projectin basliqi" id="name" name="location">
+                            <label for="name" class="form-label text-light">Qaydanın adı Azərbaycan dilində </label>
+                            <input type="text" class="form-control" placeholder="basliq Az" id="name" name="termsNameAz">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-light">aciqlama</label>
-                            <input type="text" class="form-control" placeholder="projectin kontenti"  name="gmail">
+                            <label for="name" class="form-label text-light">Qaydanın adı Alman dilində</label>
+                            <input type="text" class="form-control" placeholder="basliq De" id="name" name="termsNameGe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-light">Qaydanın içəriyi Azərbaycan dilində</label>
+                            <textarea type="text" class="form-control" placeholder="içərik Az" id="descAz"  name="termsDescAz"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-light">Qaydanın içəriyi Alman dilində</label>
+                            <textarea type="text" class="form-control" placeholder="içərik De" id="descGe" name="termsDescGe"></textarea>
                         </div>
 
-                   
-                        <button type="submit" class="btn btn-primary">elave et</button>
+                        <button type="submit" class="btn btn-primary">əlavə et</button>
                     </form>
                 </div>
-            </div> -->
+            </div>
          
             <!-- Kullanıcı Listesi -->
             <div class="card mt-4">
-                
+                <div class="card-header">
+                    Mövcud qaydalar
+                </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Məkan</th>
-                                <th>E-poçt</th>
+                                <th>ad Azərbaycan dilində</th>
+                                <th>ad Alman dilində</th>
+                                <th>ayarlar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <%for(cont of contact) { %>
+                            <p class="d-none">
+                                <%= count=1 %>
+                            </p>
+                            <%for(term of terms) { %>
                                 <tr>
                                     <td>
-                                        1
+                                        <%=count++%>
                                     </td>
                                     <td>
-                                        <%=cont.location%>
+                                        <%=term.termsNameAz %>
                                     </td>
                                     <td>
-                                        <%=cont.gmail%>
+                                        <%=term.termsNameGe %>
                                     </td>
                                    
     
                                     <td  >
-                                        <a href="contact/<%=cont._id %>" class="btn btn-success detail-btn"><i class="fa fa-eye"></i></a>
+                                        <a href="terms/<%=term._id %>" class="btn btn-success detail-btn"><i class="fa fa-eye"></i></a>
     
-                                        <a href="contact/update/<%=cont._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                    
+                                        <a href="terms/update/<%=term._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                        <form class="my-1" id="deleteForm" action="terms/delete/<%=term._id%>" method="POST">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                              <i class="fa fa-trash"></i> 
+                                            </button>
+                                          </form>
+    
+    
                                     </td>
                                 </tr>
                                 <% } %>
@@ -84,7 +103,7 @@
                             <p>Həqiqətən silmək istəyirsən?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ləğv et</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
                             <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
                         </div>
                     </div>
@@ -121,5 +140,19 @@
                 }
             }
         </script>
-    
+     <script src="/ckeditor/ckeditor.js"></script>
+     <script>
+ 
+
+       CKEDITOR.replace('descAz',{
+       
+       removePlugins: 'trackchanges',
+       entities: false,
+     });
+     CKEDITOR.replace('descGe',{
+       
+       removePlugins: 'trackchanges',
+       entities: false,
+     });
+     </script>
         <%- include("../partials/_footer") %>

@@ -6,8 +6,8 @@
         <div class="card">
             <div class="card-body">
                 <form action="<%=user._id%>" method="post">
-                    <p><b><%=user.username%></b> kullanıcısının statüsünü değiştirin</p>
-                    <label for="role">Statü Seç:</label>
+                    <p><b><%=user.username%></b> adlı istifadəçinin statusunu dəyişdirin</p>
+                    <label for="role">Status seç:</label>
                     <select id="role" name="role">
                         <% const roles = ['user', 'admin','kurslu_uzvler','rehber_uzv', 'reyaset_heyyyeti_uzvleri', 'heqiqi_uzvler', 'assosiasiyali_uzvler', 'fexri_uzvler', 'komekci_uzvler']; %>
                         <% for (let role of roles) { %>
@@ -16,7 +16,7 @@
                             </option>
                         <% } %>
                     </select>
-                    <button type="submit">Save</button>
+                    <button type="submit">Saxla</button>
                 </form>
             </div>
         </div>

@@ -9,23 +9,23 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>Kullanıcı Yönetimi</h1>
+        <h1>Haqqımızda</h1>
         
          <!-- Kullanıcı Ekleme Formu -->
          
         <!-- Kullanıcı Listesi -->
         <div class="card mt-4">
             <div class="card-header">
-                Kullanıcı Listesi
+                
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>basliq</th>
-                            <th>aciqlama</th>
-                            <th>İşlemler</th>
+                            <th>Başlıq</th>
+                            <th>Açıqlama</th>
+                            <th>Ayarlar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,7 +35,7 @@
                             <td><%=abo.titleAz  %></td>
                             <td><%=abo.descriptionAz  %></td>
                             
-                            <td>
+                            <td class="d-flex">
                                 <a href="about/update/<%=abo._id  %>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
                                 <a href="about/<%=abo._id %>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                             </td>

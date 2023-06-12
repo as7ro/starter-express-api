@@ -2,20 +2,18 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>update news</h1>
+        <h1>Kontank Güncəllənməsi</h1>
 
         <div class="card mt-4">
-            <div class="card-header">
-               update news
-            </div>
+          
             <div class="card-body">
                 <form action="<%=contact._id%>" method="post" >
                     <div class="mb-3">
-                        <label for="name" class="form-label">mekan</label>
+                        <label for="name" class="form-label">Məkan</label>
                         <input type="text" class="form-control" id="name" value="<%=contact.location  %>" name="location">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">e-poct unvani</label>
+                        <label for="name" class="form-label">e-poct ünvanı</label>
                         <input type="text" class="form-control" id="name" value="<%=contact.gmail  %>" name="gmail">
                     </div>
                     <div class="mb-3">
@@ -37,10 +35,14 @@
                     
                     
                    
-                    <button type="submit" class="btn btn-primary">update</button>
+                    <button type="submit" class="btn btn-primary">Guncəllə</button>
                 </form>
             </div>
         </div>
     </div>
 
     <%- include("../partials/_footer")  %>
+
+
+
+  

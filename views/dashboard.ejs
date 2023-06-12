@@ -26,7 +26,7 @@
                     
                         <div class="testimonial-item text-center">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto" src="<%= user.url%>" alt="">
+                                <img class="img-fluid rounded-circle mx-auto" style="max-width: 15rem !important;" src="<%= user.url%>" alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
@@ -55,13 +55,13 @@
                                                 <!-- ad -->
                                                 <div class="mb-3">
                                                     <label for="input1" class="form-label"><%=resources.userName%></label>
-                                                    <input type="text" value="<%= user.name %>"  name="name"  class="form-control" >
+                                                    <input type="text" value="<%= user.user_name %>"  name="user_name"  class="form-control" >
                                                 </div>
                         
                                                 <!--soyad -->
                                                 <div class="mb-3">
                                                     <label for="input" class="form-label"><%=resources.userSurname%></label>
-                                                    <input type="text"  value="<%= user.surname %>" name="surname" class="form-control" >
+                                                    <input type="text"  value="<%= user.user_surname %>" name="user_surname" class="form-control" >
                                                 </div>
                                                 <!-- haqqimda -->
                                                 <div class="mb-3">
@@ -111,6 +111,7 @@
   
   CKEDITOR.replace('editor1',{
     entities: false,
+    
   });
   CKEDITOR.replace('editor2',{
   

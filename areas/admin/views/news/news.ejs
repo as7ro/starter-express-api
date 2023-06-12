@@ -9,36 +9,36 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>xeberlerin elave olunmasi</h1>
+        <h1>Xəbərlər Səhifəsi</h1>
         <div class="card mt-4 ">
             <div class="card-header bg-primary text-light pointer" onclick="toggleCardContent()">
-                xeber elave etmek ucun klik edin
+                Xəbər elavə etmək üçün klik edin.
             </div>
             <div class="card-body bg-dark" id="cardContent" style="display: none;">
 
                 <form action="/admin/news" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light">basliq az</label>
-                        <input type="text" class="form-control" placeholder="xenerin basliqi az" id="name"
-                            name="titleAz">
+                        <label for="name" class="form-label text-light">Xəbərin başlığı Azərbaycan dilində</label>
+                        <textarea type="text" class="form-control" placeholder="başlıq Az" id="nameAz"
+                            name="titleAz"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light">basliq de</label>
-                        <input type="text" class="form-control" placeholder="xenerin basliqi de" id="name"
-                            name="titleGe">
+                        <label for="name" class="form-label text-light">Xəbərin başlığı Alman dilində</label>
+                        <textarea type="text" class="form-control" placeholder="başlıq De" id="nameGe"
+                            name="titleGe"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label text-light">aciqlama az</label>
-                        <textarea type="text" class="form-control" placeholder="xeberin kontenti az" name="descriptionAz"
-                            id="descriptionAz"></textarea>
+                        <label for="email" class="form-label text-light">Xəbərin içəriyi Azərbaycan dilində</label>
+                        <textarea type="text" class="form-control" placeholder="içərik Az" name="descriptionAz"
+                            id="descAz"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label text-light">aciqlama de</label>
-                        <textarea type="text" class="form-control" placeholder="xeberin kontenti de" name="descriptionGe"
-                            id="descriptionDe"></textarea>
+                        <label for="email" class="form-label text-light">Xəbərin içəriyi Alman dilində</label>
+                        <textarea type="text" class="form-control" placeholder="içərik De" name="descriptionGe"
+                            id="descGe"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="role" class="form-label text-light">xeberin kategoriyasi</label>
+                        <label for="role" class="form-label text-light">Xəbərin kateqoriyası</label>
                         <select class="form-control" id="role" name="categoryId">
                             <% newsCats.forEach(function(category) { %>
                                 <option value="<%= category._id %>">
@@ -49,50 +49,50 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="photo" class="form-label text-light">foto secin</label>
+                        <label for="photo" class="form-label text-light">Şəkil seçin</label>
                         <input class="form-control" type="file" id="photo" name="image">
                     </div>
                     <div class="mb-3">
-                        <label for="photo" class="form-label text-light ">fotolar secin</label>
+                        <label for="photo" class="form-label text-light ">Şəkillər seçin</label>
                         <input class="form-control" type="file" id="photo" name="images" multiple>
                     </div>
-                    <button type="submit" class="btn btn-primary">elave et</button>
+                    <button type="submit" class="btn btn-primary">Əlavə et</button>
                 </form>
             </div>
         </div>
         <div class="card mt-4  ">
             <div class="card-header bg-primary text-light pointer" onclick="toggleCardContentCat()">
-                kategoriya elave etmek ucun klik edin
+                Kateqoriya elavə etmək üçün klik edin.
             </div>
             <div class="card-body bg-dark" id="cardContent1" style="display: none;">
                 <form action="/admin/newscat" method="POST">
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light">kategoriya adi qeyd edin</label>
+                        <label for="name" class="form-label text-light">Kateqoriya adı qeyd edin Azərbaycan dilində</label>
                         <input type="text" placeholder="kategoriyanin adi az" class="form-control" id="name"
                             name="catNameAz">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label text-light">kategoriya adi qeyd edin</label>
+                        <label for="name" class="form-label text-light">Kateqoriya adı qeyd edin Alman dilində</label>
                         <input type="text" placeholder="kategoriyanin adi ge" class="form-control" id="name"
                             name="catNameGe">
                     </div>
-                    <button type="submit" class="btn btn-primary">elave et</button>
+                    <button type="submit" class="btn btn-primary">əlavə et</button>
                 </form>
             </div>
         </div>
         <!-- category -->
         <div class="card mt-4">
             <div class="card-header">
-                sira
+                Kateqoriyaların siyahısı
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>title</th>
-                            <th>short description</th>
-                            <th>category</th>
+                            <th>Kateqoriya adı Az</th>
+                            <th>Kateqoriya adı De</th>
+                            <th>Ayarlar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,15 +133,15 @@
         <!-- Kullanıcı Listesi -->
         <div class="card mt-4">
             <div class="card-header">
-                sira
+               Xəbərlərin siyahısı
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>title</th>
-                            <th>short description</th>
+                            <th>Xəbər adı Az</th>
+                            <th>Xəbər adı De</th>
                             <th>category</th>
                         </tr>
                     </thead>
@@ -158,7 +158,7 @@
                                     <%=news.titleAz %>
                                 </td>
                                 <td>
-                                    <%=news.shortDescAz %>
+                                    <%=news.titleGe %>
                                 </td>
                                 <td>
                                     <%= news.categoryId.catNameAz %>
@@ -192,14 +192,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Silme İşlemi Onayı</h5>
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Gerçekten silmek istediğinize emin misiniz?</p>
+                        <p>Həqiqətən silmək istəyirsən?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
                         <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
                     </div>
                 </div>
@@ -246,6 +246,29 @@
             }
         }
       
+    </script>
+    
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+CKEDITOR.replace('nameAz',{
+        entities: false,
+      });
+      CKEDITOR.replace('nameGe',{
+      
+        removePlugins: 'trackchanges',
+        entities: false,
+      });
+      CKEDITOR.replace('descAz',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
+    CKEDITOR.replace('descGe',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
     </script>
 
     <%- include("../partials/_footer") %>

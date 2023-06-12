@@ -2,31 +2,29 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>update news</h1>
+        <h1>Xəbəri Güncəlləyin</h1>
 
         <div class="card mt-4">
-            <div class="card-header">
-               update news
-            </div>
+            
             <div class="card-body">
                 <form action="<%=news_._id%>" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="name" class="form-label">title</label>
-                        <input type="text" class="form-control" id="name" value="<%=news_.titleAz  %>" name="titleAz">
+                        <label for="name" class="form-label">Başlıq Azərbaycan dilində</label>
+                        <textarea type="text" class="form-control" id="nameAz"  name="titleAz"><%=news_.titleAz  %></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">title</label>
-                        <input type="text" class="form-control" id="name" value="<%=news_.titleGe  %>" name="titleGe">
+                        <label for="name" class="form-label">Başlıq Alman dilində</label>
+                        <textarea type="text" class="form-control" id="nameGe"  name="titleGe"><%=news_.titleGe  %></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">description az</label>
-                        <input type="text" class="form-control"  value="<%=news_.descriptionAz  %>" name="descriptionAz">
+                        <label for="description" class="form-label">İçərik Azərbaycan Dilində</label>
+                        <textarea type="text" class="form-control" id="descAz"  name="descriptionAz"> <%=news_.descriptionAz  %></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">description de</label>
-                        <input type="text" class="form-control"  value="<%=news_.descriptionGe  %>" name="descriptionGe">
+                        <label for="description" class="form-label">İçərik Alman Dilində</label>
+                        <textarea type="text" class="form-control" id="descGe"  name="descriptionGe"><%=news_.descriptionGe  %></textarea>
                     </div>
-                    <label for="category" class="form-label">category</label>
+                    <label for="category" class="form-label">Kateqoriya Seçin</label>
 
                     <select id="category" name="categoryId" class="form-select">
                         <% categories.forEach(function(category) { %>
@@ -36,17 +34,42 @@
                         <% }); %>
                       </select>
                     <div class="mb-3">
-                        <label for="photo" class="form-label">choose photo</label>
+                        <label for="photo" class="form-label">Şəkil seçin</label>
                         <input class="form-control" type="file" id="photo" name="image" >
                     </div>
                     <div class="mb-3">
-                        <label for="photo" class="form-label">choose photos</label>
+                        <label for="photo" class="form-label">Şəkillər seçin</label>
                         <input class="form-control" type="file" id="photo" name="images" multiple >
                     </div>
-                    <button type="submit" class="btn btn-primary">update</button>
+                    <button type="submit" class="btn btn-primary">Guncəllə</button>
                 </form>
             </div>
         </div>
     </div>
 
     <%- include("../partials/_footer")  %>
+
+
+    
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+CKEDITOR.replace('nameAz',{
+        entities: false,
+      });
+      CKEDITOR.replace('nameGe',{
+      
+        removePlugins: 'trackchanges',
+        entities: false,
+      });
+      CKEDITOR.replace('descAz',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
+    CKEDITOR.replace('descGe',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
+    </script>

@@ -6,7 +6,7 @@ import * as projectPageController from "../controllers/projectPageController.js"
 import * as aboutController from "../controllers/aboutController.js"
 import * as contactController from "../controllers/contactController.js"
 import * as joinUsController from "../controllers/joinUsController.js"
-
+import * as termsController from "../controllers/termsController.js"
 
 const router = express.Router();
 
@@ -68,11 +68,15 @@ router.route("/joinUs/:id").get(joinUsController.getJoinUsDetail)
 router.route("/joinUs").post(joinUsController.createJoinUs)
 
 
+//terms
 
 
-
-
-
+router.route("/terms").get(termsController.getTermsPage)
+router.route("/terms/update/:id").get(termsController.getUpdateTerms)
+router.route("/terms/update/:id").post(termsController.updateTerms)
+router.route("/terms/:id").get(termsController.getTermsDetail)
+router.route("/terms").post(termsController.createTerms)
+router.route("/terms/delete/:id").post(termsController.deleteTerms)
 
 
 

@@ -142,9 +142,6 @@ const updateJoinUs = async (req, res) => {
           file_id: file.name,
         },
       ];
-    } else {
-      // Eğer dosya yüklenmediyse veya dosyalar boşsa, files'i boş bir dizi olarak ayarla
-      joinUs.files = [];
     }
 
     // Diğer alanları güncelle

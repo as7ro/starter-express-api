@@ -1,8 +1,8 @@
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-function roleFilter(role) {
-  return function (req, res, next) {
 
+function roleFilter(roles) {
+  return async function (req, res, next) {
     const token = req.cookies.jwt;
 
     if (token) {
@@ -10,20 +10,20 @@ function roleFilter(role) {
         if (err) {
           res.locals.user = null;
           next();
-        }
-        else {
-          const user = await User.findById(decodedToken.userId)
+        } else {
+          const user = await User.findById(decodedToken.userId);
           res.locals.user = user;
-          if (user && user.role === role) {
+          
+          // Kullanıcının rollerinden herhangi biri roles dizisinde yer alıyorsa, erişime izin ver
+          if (user && roles.some((role) => user.role === role)) {
             next();
           } else {
-            res.redirect("/")
+            res.redirect("/");
           }
         }
-      })
+      });
     }
-
-  }
+  };
 }
 
-export default roleFilter
+export default roleFilter;

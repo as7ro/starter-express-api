@@ -40,10 +40,11 @@ export const langAz = {
   //reyast heyyeti
   reyasetHeader: "reyaset heyyeti",
   categories: "CATEGORIES",
-  contact:"elaqe",
-  followme:"bizi izleyin",
+  contact:"Əlaqə",
+  followme:"Bizi izləyin",
   registerr:"Qeydiyyatdan kecmemisiz?",
   download:"Yukle",
+
 ///uzvlerimiz haqqinda
   uzvluk_uzvler:"Bizim üzvlərimiz",
   searchNews:"Xəbər axtar",
@@ -62,7 +63,9 @@ export const langAz = {
   save:"Yadda saxla",
   personalData:"Şəxsi Məlumatlar",
   huor:"butun huquqlar qorunur",
-  iconLink:"fi fi-az"
+  iconLink:"fi fi-az",
+  whoiswe:"Biz kimik?",
+  welcome:"DAMV-a xoş gəlmişsiniz",
 }
 
 
@@ -114,7 +117,7 @@ export const langGe = {
   //reyaset heyyeti
   reyasetHeader: "reyasetdsadasd heyyeti",
   categories: "CATEGORIES",
-  contact:"kontakt",
+  contact:"Kontakt",
   followme:"Folgen Sie uns",
   registerr:"Noch nicht registriert?",
   download:"Herunterladen",
@@ -138,7 +141,9 @@ export const langGe = {
   
 
 
-  huor:"Alle Rechte vorbehalten"
+  huor:"Alle Rechte vorbehalten",
+  whoiswe:"dsadad",
+  welcome:"DAMV-a xoş gəlmişsiniz1",
 }
 
 

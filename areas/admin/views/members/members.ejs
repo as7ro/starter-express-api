@@ -9,27 +9,10 @@
 
     <!-- Main Content -->
     <div class="container mt-4">
-        <h1>Kullanıcı Yönetimi</h1>
+        <h1>İstifadəçi Səhifəsi </h1>
         
          <!-- Kullanıcı Ekleme Formu -->
-         <div class="card mt-4">
-            <div class="card-header pointer bg-primary text-light" onclick="toggleCardContent()">
-                Kullanıcı Ekle
-            </div>
-            <div class="card-body " id="cardContent" style="display: none;">
-                <form>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Ad</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ekle</button>
-                </form>
-            </div>
-        </div>
+        
         <!-- Kullanıcı Listesi -->
         <div class="card mt-4">
             <div class="card-header">
@@ -40,9 +23,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Ad</th>
-                            <th>Email</th>
-                            <th>İşlemler</th>
+                            <th>İstifadəçi adı</th>
+                            <th>E-poçtu</th>
+                            <th>Ayarlar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +37,7 @@
                             <td><%=user.email  %></td>
                             <td>
                                 <a href="members/update/<%=user._id %>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
+                               
                                 <a href="members/<%=user._id %>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
