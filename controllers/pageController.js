@@ -15,7 +15,8 @@ const getIndexPage =async (req, res) => {
     const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
     const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
    
-
+console.log(users)
+console.log(president)
     res.render('index', {
         link: "index",
         about,
@@ -27,6 +28,7 @@ const getIndexPage =async (req, res) => {
 }
 const getAboutPage = async (req, res) => {
     const about = await aboutService.getAbout(req.cookies.language)
+
 
     res.render('about', {
         link: "about",

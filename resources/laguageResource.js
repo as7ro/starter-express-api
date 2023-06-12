@@ -65,7 +65,7 @@ export const langAz = {
   huor:"butun huquqlar qorunur",
   iconLink:"fi fi-az",
   whoiswe:"Biz kimik?",
-  welcome:"DAMV-a xoş gəlmişsiniz",
+  welcome1:"DAMV-a xoş gəlmişsiniz",
 }
 
 
@@ -143,7 +143,7 @@ export const langGe = {
 
   huor:"Alle Rechte vorbehalten",
   whoiswe:"dsadad",
-  welcome:"DAMV-a xoş gəlmişsiniz1",
+  welcome1:"Willkommen in DAMV",
 }
 
 
