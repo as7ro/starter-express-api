@@ -142,7 +142,7 @@ export const langGe = {
 
 
   huor:"Alle Rechte vorbehalten",
-  whoiswe:"dsadad",
+  whoiswe:"Über uns",
   welcome1:"Willkommen in DAMV",
 }
 

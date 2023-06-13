@@ -14,9 +14,7 @@ const getIndexPage =async (req, res) => {
     const newses =  await newsService.getNews(req.cookies.language)
     const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
     const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
-   
-console.log(users)
-console.log(president)
+
     res.render('index', {
         link: "index",
         about,
@@ -49,9 +47,8 @@ const getJoinUsPage = async (req, res) => {
 }
 
 const getMembersPage = async (req, res) => {
-    const users = await User.find({ role: "reyaset_heyyyeti_uzvleri" });
-    const president = await User.find({ role: "rehber_uzv" });
-
+    const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
+    const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
     res.render('members', {
         link: "members",
         users,
