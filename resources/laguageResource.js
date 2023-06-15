@@ -66,6 +66,23 @@ export const langAz = {
   iconLink:"fi fi-az",
   whoiswe:"Biz kimik?",
   welcome1:"DAMV-a xoş gəlmişsiniz",
+  lastNews:"Son Xəbərlər",
+  samePhoto:"Xəbərə aid digər şəkillər",
+  next:"irəli",
+  preview:"geri",
+  //password
+  passwordLink:"Şifrə dəyişmə linki e-mail ünvanınıza göndərildi.",
+  noUser:"Belə bir istifadəçi yoxdur!",
+  passNoConfirm:"Şifrələr bir birinə uyğun gəlmir!",
+  missedDate:"Linkin müddəti başa çatıb.",
+  successPasswordUpdate:"Şifrəniz uğurla dəyişdirildi",
+  //passwordu emaile gonder
+  sendPassword:"Göndər",
+  forgotPassword:"Şifrəni unutdun?",
+  changePassword:"Şifrəni dəyiş",
+  newPassword:"Yeni şifrə",
+  confirmPassword:"Şifrəni təstiqlə"
+
 }
 
 
@@ -77,6 +94,8 @@ export const langAz = {
 
 export const langGe = {
   //nav
+  next:"Vorwärts",
+  preview:"Rückwärts",
   home: "Startseite",
   login: 'Anmelden',
   register: 'Registrierung',
@@ -144,6 +163,21 @@ export const langGe = {
   huor:"Alle Rechte vorbehalten",
   whoiswe:"Über uns",
   welcome1:"Willkommen in DAMV",
+  lastNews:"Die neuesten Nachrichten",
+  samePhoto:"Passend zu dieser Nachricht",
+
+  //passwor forgoyt
+  passwordLink:"Um dir Passwort zu ändern, wurde ein Link an Ihre e Mail Adresse verschickt!",
+  noUser:"Benutzer nicht erkannt",
+  passNoConfirm:"Passwörter passen nicht übereinander",
+  missedDate:"Link ist abgelaufen",
+  successPasswordUpdate:"Ihr Passwort erfolgreich geändert",
+
+  sendPassword:"Senden",
+  forgotPassword:"Passwort vergessen?",
+  changePassword:"Passwort ändern",
+  newPassword:"Neues Passwort",
+  confirmPassword:"Bestätige das Passwort"
 }
 
 

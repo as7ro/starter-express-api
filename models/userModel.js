@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 import validator from "validator";
 
 
@@ -59,7 +59,15 @@ const userSchema = new Schema({
   inst:{
     type:String,
     default:"https://www.instagram.com/"
-  }
+  },
+  resetToken: {
+    type: String,
+    default: null,
+  },
+  resetTokenExpiry: {
+    type: Date,
+    default: null,
+  },
 },
   {
     timestamps: true
@@ -67,19 +75,29 @@ const userSchema = new Schema({
 );
 
 
-userSchema.pre('save', function (next) {
+userSchema.pre("save", async function (next) {
   const user = this;
-  if (user.user_name) {
-    user.user_name = user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1);
+  if (!user.isModified("password")) {
+    return next();
   }
-  if (user.user_surname) {
-    user.user_surname = user.user_surname.charAt(0).toUpperCase() + user.user_surname.slice(1);
-  }
-  bcrypt.hash(user.password, 10, (err, hash) => {
-    user.password = hash;
+
+  try {
+    const hashedPassword = await argon2.hash(user.password);
+    user.password = hashedPassword;
     next();
-  });
+  } catch (err) {
+    return next(err);
+  }
 });
+
+userSchema.methods.comparePassword = async function (password) {
+  try {
+    return await argon2.verify(this.password, password);
+  } catch (err) {
+    throw err;
+  }
+};
+
 
 
 const User = mongoose.model('User', userSchema);

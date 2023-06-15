@@ -9,10 +9,7 @@ import roleFilter from "../middlewares/roleFilter.js"
 import getContact from "../middlewares/contactMiddleware.js" 
 import { checkUser } from "../middlewares/authMiddleware.js";
 import { userResource } from "../config/resourceConfig.js";
-import {
-    showForgotPasswordForm,
-    sendPasswordResetEmail,
-} from '../controllers/userController.js';
+
 import { changeLanguage } from "../controllers/languageController.js";
 
 const setRoutes = (app) => {

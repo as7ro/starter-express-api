@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import argon2 from "argon2";
 import nodemailer from 'nodemailer';
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
@@ -15,7 +15,6 @@ const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
     res.status(201).json({ user: user._id });
-    console.log(req.body)
   } catch (error) {
     console.log('ERROR', error);
 
@@ -84,27 +83,25 @@ const updateUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log("username",username)
+    console.log("password",password)
 
     const user = await User.findOne({ username });
 
-    let same = false;
-
-    if (user) {
-
-      same = await bcrypt.compare(password, user.password);
-    } else {
+    if (!user) {
       req.session.data = { message: "" };
       return res.redirect('/login');
-
     }
 
+    const isPasswordValid = await user.comparePassword(password);
 
-    if (same) {
+    if (isPasswordValid) {
       const token = createToken(user._id);
       res.cookie('jwt', token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
       });
+
       switch (user.role) {
         case "admin":
           return res.redirect('/admin');
@@ -114,11 +111,9 @@ const loginUser = async (req, res) => {
         default:
           return res.redirect('/');
       }
-
     } else {
       req.session.data = { message: "" };
       return res.redirect('/login');
-
     }
   } catch (error) {
     res.status(500).json({
@@ -143,43 +138,17 @@ const getDashboardPage = (req, res) => {
 //NodeMAIlder
 
 const showForgotPasswordForm = (req, res) => {
-  res.render('forgot-password', { error: null, success: null });
+  res.render('forgot-password', { 
+    link: "login",
+    error: null, success: null });
 };
 
 const getConfirmPassword = (req, res) => {
-const t =req.params.token.toString();
-
-  res.render('changePassword',{data:{t}})
-}
-
-const postConfirmPassword = async (req, res) => {
-  const token = req.body.token;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-
-  try {
-    const user = await User.findOne({ resetPasswordToken: token });
-
-    if (user) {
-      if (password === confirmPassword) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        user.password = hashedPassword;
-        await user.save();
-        res.redirect('/login');
-      } else {
-        // Parola doğrulama hatası
-        res.status(400).json({ error: 'Parolalar eşleşmiyor.' });
-      }
-    } else {
-      // Kullanıcı bulunamadı
-      res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
-    }
-  } catch (error) {
-    // İşleme hatası
-    res.status(500).json({ error: 'İşleme hatası.' });
-  }
+  const token = req.params.token.toString();
+  res.render('changePassword', { 
+    link: "login",
+    data: { token } });
 };
-
 const sendPasswordResetEmail = async (req, res) => {
   const { email } = req.body;
 
@@ -188,66 +157,115 @@ const sendPasswordResetEmail = async (req, res) => {
     console.log("FPPS", email)
     if (!user) {
       return res.render('forgot-password', {
-        error: 'User not found. Please enter a valid email address.',
+        link: "login",
+        
+        error: req.cookies.language=="az"?'Belə bir istifadəçi yoxdur!':"Benutzer nicht erkannt",
       });
     }
 
     const resetToken = generateResetToken();
-
-    user.resetPasswordToken = resetToken;
-    user.resetPasswordTokenExpiry = Date.now() + 3600000;
-    
+    user.resetToken = resetToken;
+    user.resetTokenExpiry = Date.now() + 900000
     await user.save();
-
-  
-    const siteDomain="http://localhost:3000"
+    
+    const siteDomain = "http://damvev.de";
     const resetLink = `${siteDomain}/users/changePassword/${resetToken}`;
-    const emailContent = `Parolanızı sıfırlamak için aşağıdaki bağlantıya tıklayın:\n\n${resetLink}`;
-    sendResetEmail(user.email, emailContent); // Renamed the function here
+    const emailContent = `${resetLink}`;
+    await sendResetPasswordEmail(user.email, emailContent);
 
     res.render('forgot-password', {
-      success: 'Password reset email sent. Please check your email.',
+      link:"login",
+      success: req.cookies.language=="az"?'Şifrə dəyişmə linki e-mail ünvanınıza göndərildi.':"Um dir Passwort zu ändern, wurde ein Link an Ihre e Mail Adresse verschickt!",
     });
   } catch (err) {
-    console.error(err);
     res.render('forgot-password', {
+      link: "login",
       error: 'An error occurred while processing your request. Please try again later.',
     });
   }
 };
 
-function generateResetToken() {
-  const token = Math.random().toString(36).substr(2, 6).toUpperCase()+DATE.toLocaleString().toString();
-  return token;
-}
+const postConfirmPassword = async (req, res) => {
+  try {
+    const { token, newPassword, confirmPassword } = req.body;
 
-function sendResetEmail(email, token) { // Renamed the function here
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', // Replace with your email provider's SMTP server hostname
-    port: 587, // Replace with the SMTP server port (typically 587 or 465)
-    secure: false, // Set to true if you're using a secure connection (SSL/TLS)
-    auth: {
-      user: 'orkhangk@code.edu.az', // Your email address
-      pass: 'hjfvvpkrfozynclo', // Your email password
-    },
-  });
-
-
-  const mailOptions = {
-    from: 'orkhangk@code.edu.az',
-    to: email,
-    subject: 'Password Reset',
-    text: `Please use the following token to reset your password: ${token}`,
-  };
-
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('Password reset email sent:', info.response);
+    // Şifrelerin eşleşip eşleşmediğini kontrol edin
+    if (newPassword !== confirmPassword) {
+      return res.render('changePassword', {
+        link: "login",
+        error: req.cookies.language == "az" ? 'Şifrələr bir birinə uyğun gəlmir!' : "Passwörter passen nicht übereinander",
+        data: { token } // token değerini data içerisinde geçirin
+      });
     }
-  });
-}
+
+    // Tokeni kullanarak kullanıcıyı bulun
+    const user = await User.findOne({ resetToken: token });
+
+    if (!user) {
+      // Kullanıcı bulunamazsa hata döndürün
+      return res.render('changePassword', {
+        link: "login",
+        error: req.cookies.language == "az" ? 'Linkin müddəti başa çatıb.' : "Link ist abgelaufen",
+        data: { token } // token değerini data içerisinde geçirin
+      });
+    }
+
+    // Yeni şifreyi hashleyin ve kullanıcının şifresini güncelleyin
+    user.password = newPassword;
+
+    // Şifre sıfırlama tokenini ve süresini sıfırlayın
+    user.resetToken = undefined;
+    user.resetTokenExpiry = undefined;
+
+    await user.save();
+
+    // Başarılı mesajını ekrana getirin
+    
+    res.render('changePassword', {
+      link: "login",
+      success: req.cookies.language == "az" ? 'Şifrə uğurla dəyişdirildi. Yönləndirilirsiniz...' : "Das Passwort wurde erfolgreich aktualisiert. Weiterleitung erfolgt...",
+      data: { token } ,// token değerini data içerisinde geçirin
+      redirectAfterSuccess: '/login'
+   
+    });
+
+    // 2 saniye sonra otomatik yönlendirme yapmak için
+ 
+  } catch (error) {
+    res.status(500).json({ message: 'Bir hata oluştu', error });
+  }
+};
+
+const generateResetToken = () => {
+  const token = [...Array(20)].map(() => Math.random().toString(16).substr(2)).join('');
+  return token;
+};
+
+const sendResetPasswordEmail = async (email, token) => {
+  try {
+    const mailOptions = {
+      from: 'orkhangk@code.edu.az',
+      to: email,
+      subject: 'Password Reset',
+      html: `<p>Şifrəni dəyişmək üçün aşağıdakı linke keçid edin.</p><a href="${token}">${token}</a>`,
+    };
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com', // Replace with your email provider's SMTP server hostname
+      port: 587, // Replace with the SMTP server port (typically 587 or 465)
+      secure: false, // Set to true if you're using a secure connection (SSL/TLS)
+      auth: {
+        user: 'orkhangk@code.edu.az', // Your email address
+        pass: 'hjfvvpkrfozynclo', // Your email password
+      },
+    });
+
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent');
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 
 export {
