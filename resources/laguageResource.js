@@ -81,7 +81,8 @@ export const langAz = {
   forgotPassword:"Şifrəni unutdun?",
   changePassword:"Şifrəni dəyiş",
   newPassword:"Yeni şifrə",
-  confirmPassword:"Şifrəni təstiqlə"
+  confirmPassword:"Şifrəni təstiqlə",
+  president:"Sədr"
 
 }
 
@@ -94,6 +95,7 @@ export const langAz = {
 
 export const langGe = {
   //nav
+  president:"Der Vorsitzende",
   next:"Vorwärts",
   preview:"Rückwärts",
   home: "Startseite",

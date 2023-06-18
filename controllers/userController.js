@@ -169,7 +169,8 @@ const sendPasswordResetEmail = async (req, res) => {
     await user.save();
     
     const siteDomain = "http://damvev.de";
-    const resetLink = `${siteDomain}/users/changePassword/${resetToken}`;
+    const language = req.cookies.language || "az";
+    const resetLink = `${siteDomain}/users/changePassword/${resetToken}?lang=${language}`;
     const emailContent = `${resetLink}`;
     await sendResetPasswordEmail(user.email, emailContent);
 

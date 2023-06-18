@@ -34,13 +34,14 @@
                     <div class="offset-lg-3 col-lg-6 team-item">
                         <div class="row g-0 bg-light rounded overflow-hidden">
                             <div class="col-12 col-sm-5 h-100">
-                                <img class="img-fluid h-100" src="<%=pres.url%>" style="object-fit: cover;">
+                                <img class="img-fluid h-100" src="<%=pres.url%>" >
                             </div>
                             <div class="col-12 col-sm-7 h-100 d-flex flex-column">
                                 <div class="mt-auto p-4">
-                                    <h3><%=pres.name%>  <%=pres.surname%></h3>
-                                    <h6 class="fw-normal fst-italic text-primary mb-4"><%=pres.descriptionAz%></h6>
-                                    <p class="m-0"><%=pres.description%></p>
+                                    <h6 class="fw-normal fst-italic text-primary mb-4"><%=resources.president%></h6>
+                                    <h3><%=pres.user_name%>  <%=pres.user_surname%></h3>
+                                    <h6 class="fw-normal fst-italic text-primary mb-4"><%=pres.description%></h6>
+                                  
                                 </div>
                                 <div class="d-flex mt-auto border-top p-4">
                                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -56,7 +57,7 @@
                 <div class="col-lg-6 team-item">
                     <div class="row g-0 bg-light rounded overflow-hidden">
                         <div class="col-12 col-sm-5 h-100">
-                            <img class="img-fluid h-100" src="<%=user.url%>" style="object-fit: cover;">
+                            <img class="img-fluid h-100" src="<%=user.url%>" >
                         </div>
                         <div class="col-12 col-sm-7 h-100 d-flex flex-column">
                             <div class="mt-auto p-4">
