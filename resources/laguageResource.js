@@ -20,30 +20,30 @@ export const langAz = {
   news:"Xəbərlər",
   about:"Haqqımızda",
   //errors
-  acces_denied: "sizin bu sehifeye giris icazeniz yoxdur",
+  acces_denied: "sizin bu sehifəyə giriş icazəniz yoxdur",
   //registerbolmesi
   header: "registrasiya",
-  success: "Qeydiyyat ugurla tamamlandi!",
-  registerUsername:"İstifadeçi adı",
+  success: "Qeydiyyat uğurla tamamlandı!",
+  registerUsername:"İstifadəçi adı",
   registerPassword:"Parol",
   //login bolmesi
-  loginHeader: "giris et",
+  loginHeader: "giriş et",
   loginRes:"İstifadəçi adı və ya parol səhvdir!",
   //project bolmesi
-  projectHeader: "proektlerimiz",
+  projectHeader: "proektlərimiz",
   //xeber bolmesi
-  newsHeader: "xeberler",
+  newsHeader: "xəbərlər",
   newsCategories: "CATEGORIES",
   //uzvler
-  uzvHeader: "uzvlerimiz",
+  uzvHeader: "üzvlerimiz",
   uzvCategories: "CATEGORIES",
   //reyast heyyeti
   reyasetHeader: "reyaset heyyeti",
   categories: "CATEGORIES",
   contact:"Əlaqə",
   followme:"Bizi izləyin",
-  registerr:"Qeydiyyatdan kecmemisiz?",
-  download:"Yukle",
+  registerr:"Qeydiyyatdan keçməmisiniz?",
+  download:"Yükle",
 
 ///uzvlerimiz haqqinda
   uzvluk_uzvler:"Bizim üzvlərimiz",
