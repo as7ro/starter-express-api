@@ -6,11 +6,13 @@ import adminRoute from "../areas/admin/routes/adminRoute.js";
 import contactRoute from "../routes/contactRoute.js"
 import projectRoute from "../routes/projectRoute.js"
 import roleFilter from "../middlewares/roleFilter.js"
-import getContact from "../middlewares/contactMiddleware.js" 
+import getContact from "../middlewares/contactMiddleware.js" ;
 import { checkUser } from "../middlewares/authMiddleware.js";
 import { userResource } from "../config/resourceConfig.js";
 
 import { changeLanguage } from "../controllers/languageController.js";
+
+
 
 const setRoutes = (app) => {
 
@@ -25,6 +27,7 @@ const setRoutes = (app) => {
     app.use("/news", newsRoute);
     app.use("/users", userRoute);
     app.use("/changeLanguage", changeLanguage)
+ 
     app.use("/contact",contactRoute)
     app.use("/projects",projectRoute)
     app.use("/admin", adminRoute)

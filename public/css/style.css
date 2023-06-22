@@ -102,7 +102,75 @@
     background-position: center;
 }
 
+.headTopCol{
+    background-color: #020822 !important;
+    height: 570px;
+    }
+    .dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
 
+.dark-mode a {
+  color: #ffffff;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: #ffffff;
+}
+.dark-mode h6{
+    color:black !important
+}
+.dark-mode .container-fluid.headTopCol {
+  background-color: #000000;
+}
+
+.dark-mode .container-fluid.headTopCol .display-1.text-white {
+  color: #ffffff;
+}
+
+.dark-mode .btn {
+  background-color: #ffffff;
+  color: #000000;
+}
+.dark-mode .memberClass {
+    background-color: #020822;
+}
+
+.dark-mode .memberClass h1,
+.dark-mode .memberClass h2,
+.dark-mode .memberClass h3,
+.dark-mode .memberClass h4,
+.dark-mode .memberClass h5,
+.dark-mode .memberClass h6 {
+  color: #ffffff !important;
+}
+.dark-mode .bg-darkLogin{
+    background-color: #020822 !important;
+}
+.dark-mode .card-body{
+    background-color: #020822;
+    border-radius: 3px;
+    
+}
+.dark-mode .btn.btn-outline-light {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="password"],
+.dark-mode textarea {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
 .service-item {
     position: relative;
     height: 350px;
