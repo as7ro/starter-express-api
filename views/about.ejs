@@ -67,4 +67,40 @@
 
     <!-- Footer Start -->
     <%- include("partials/_footer")  %>
-  
+      
+    <script>
+        var isDarkMode = localStorage.getItem("darkMode") === "true";
+        
+        // Dark mode geçişini işleyen fonksiyon
+        function toggleDarkMode() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            // Light mode ayarları
+            body.classList.remove("dark-mode");
+            isDarkMode = false;
+            darkModeIcon.classList.remove('fa-sun')
+            darkModeIcon.classList.add('fa-moon')  
+        } else {
+            // Dark mode ayarları
+            body.classList.add("dark-mode");
+            isDarkMode = true;
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+          }
+        
+          // Dark mode tercihini yerel depolamada güncelle
+          localStorage.setItem("darkMode", isDarkMode);
+        }
+        
+        // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
+        window.addEventListener("load", function() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            body.classList.add("dark-mode");
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+          }
+        });
+   </script>
