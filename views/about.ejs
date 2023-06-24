@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="mb-4">
-                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5"><%=resources.about%></h5>
+                        <h5 class="d-inline-block text-primary  border-bottom border-5"><%=resources.about%></h5>
                         <h1 class="display-4"><%=about.title %></h1>
                     </div>
                     <p><%=about.description %></p>
@@ -69,7 +69,7 @@
     <%- include("partials/_footer")  %>
       
     <script>
-        var isDarkMode = localStorage.getItem("darkMode") === "true";
+ var isDarkMode = localStorage.getItem("darkMode") === "true";
         
         // Dark mode geçişini işleyen fonksiyon
         function toggleDarkMode() {
@@ -81,17 +81,21 @@
             isDarkMode = false;
             darkModeIcon.classList.remove('fa-sun')
             darkModeIcon.classList.add('fa-moon')  
+            logoImage.src = '/img/damv.png';
         } else {
             // Dark mode ayarları
             body.classList.add("dark-mode");
             isDarkMode = true;
             darkModeIcon.classList.remove('fa-moon')
               darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
           }
         
           // Dark mode tercihini yerel depolamada güncelle
           localStorage.setItem("darkMode", isDarkMode);
         }
+        
+
         
         // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
         window.addEventListener("load", function() {
@@ -101,6 +105,7 @@
             body.classList.add("dark-mode");
             darkModeIcon.classList.remove('fa-moon')
               darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
           }
         });
    </script>

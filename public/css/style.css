@@ -172,8 +172,8 @@
 .dark-mode input[type="password"],
 .dark-mode textarea {
   background-color: #000000;
-  color: #ffffff;
-  border-color: #ffffff;
+  color: black;
+  border-color: black;
 }
 .service-item {
     position: relative;

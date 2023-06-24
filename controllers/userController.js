@@ -83,8 +83,7 @@ const updateUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log("username",username)
-    console.log("password",password)
+
 
     const user = await User.findOne({ username });
 
@@ -154,7 +153,6 @@ const sendPasswordResetEmail = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    console.log("FPPS", email)
     if (!user) {
       return res.render('forgot-password', {
         link: "login",
@@ -262,7 +260,7 @@ const sendResetPasswordEmail = async (email, token) => {
     });
 
     await transporter.sendMail(mailOptions);
-    console.log('Password reset email sent');
+   
   } catch (err) {
     console.error(err);
   }

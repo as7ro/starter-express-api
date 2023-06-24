@@ -37,7 +37,7 @@
                                     <div class="row g-3">
                                         <div class="text-center mx-auto mb-3" style="max-width: 24rem;">
                                             <h2
-                                                class="d-inline-block text-primary text-uppercase border-bottom border-5">
+                                                class="d-inline-block text-primary  border-bottom border-5">
                                                 <%=resources.login%>
                                             </h2>
                                                 <% if(typeof(data)!='undefined' ) { %>
@@ -56,12 +56,12 @@
 
                                         <div class="col-12 col-sm-12">
                                             <input type="text" name="username" class="form-control bg-light border-0"
-                                                placeholder="Username" style="height: 55px;">
+                                                placeholder="<%=resources.registerUsername  %>" style="height: 55px;">
                                         </div>
 
                                         <div class="col-12">
                                             <input type="password" name="password"
-                                                class="form-control bg-light border-0" placeholder="Password"
+                                                class="form-control bg-light border-0" placeholder="<%=resources.registerPassword  %>"
                                                 style="height: 55px;">
                                         </div>
                                         <div class="col-12 text-center">
@@ -87,38 +87,43 @@
                     <!-- Footer Start -->
                     <%- include("partials/_footer") %>    
                     <script>
-                         var isDarkMode = localStorage.getItem("darkMode") === "true";
-                         
-                         // Dark mode geçişini işleyen fonksiyon
-                         function toggleDarkMode() {
-                           var body = document.body;
-                         
-                           if (isDarkMode) {
-                             // Light mode ayarları
-                             body.classList.remove("dark-mode");
-                             isDarkMode = false;
-                             darkModeIcon.classList.remove('fa-sun')
-                             darkModeIcon.classList.add('fa-moon')  
-                         } else {
-                             // Dark mode ayarları
-                             body.classList.add("dark-mode");
-                             isDarkMode = true;
-                             darkModeIcon.classList.remove('fa-moon')
-                               darkModeIcon.classList.add('fa-sun')
-                           }
-                         
-                           // Dark mode tercihini yerel depolamada güncelle
-                           localStorage.setItem("darkMode", isDarkMode);
-                         }
-                         
-                         // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
-                         window.addEventListener("load", function() {
-                           var body = document.body;
-                         
-                           if (isDarkMode) {
-                             body.classList.add("dark-mode");
-                             darkModeIcon.classList.remove('fa-moon')
-                               darkModeIcon.classList.add('fa-sun')
-                           }
-                         });
+                        var isDarkMode = localStorage.getItem("darkMode") === "true";
+        
+        // Dark mode geçişini işleyen fonksiyon
+        function toggleDarkMode() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            // Light mode ayarları
+            body.classList.remove("dark-mode");
+            isDarkMode = false;
+            darkModeIcon.classList.remove('fa-sun')
+            darkModeIcon.classList.add('fa-moon')  
+            logoImage.src = '/img/damv.png';
+        } else {
+            // Dark mode ayarları
+            body.classList.add("dark-mode");
+            isDarkMode = true;
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        
+          // Dark mode tercihini yerel depolamada güncelle
+          localStorage.setItem("darkMode", isDarkMode);
+        }
+        
+
+        
+        // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
+        window.addEventListener("load", function() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            body.classList.add("dark-mode");
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        });
                     </script>

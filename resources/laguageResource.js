@@ -25,7 +25,7 @@ export const langAz = {
   header: "registrasiya",
   success: "Qeydiyyat uğurla tamamlandı!",
   registerUsername:"İstifadəçi adı",
-  registerPassword:"Parol",
+  registerPassword:"Şifrə",
   //login bolmesi
   loginHeader: "giriş et",
   loginRes:"İstifadəçi adı və ya parol səhvdir!",
@@ -43,7 +43,7 @@ export const langAz = {
   contact:"Əlaqə",
   followme:"Bizi izləyin",
   registerr:"Qeydiyyatdan keçməmisiniz?",
-  download:"Yükle",
+  download:"Yüklə",
 
 ///uzvlerimiz haqqinda
   uzvluk_uzvler:"Bizim üzvlərimiz",
