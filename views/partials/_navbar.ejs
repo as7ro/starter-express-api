@@ -1,13 +1,13 @@
-<div class="container-fluid sticky-top bg-white shadow-sm">
+<div class="container-fluid sticky-top bg-white shadow-sm dark">
   <div class="container">
-    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 dark">
       <a href="/" class="navbar-brand">
-        <img src="/img/damv.png" alt="Medinova Logo">
+        <img id="logoImage" src="/img/damv.png" alt="Damvev Logo">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler darkMenuIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon "></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="collapse navbar-collapse dark" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
           <a href="/" class="nav-item nav-link <%=link==="index" && "active" %>"><%=resources.home%></a>
           <a href="/about" class="nav-item nav-link <%=link==="about" && "active" %>"><%=resources.about%></a>
@@ -36,11 +36,11 @@
               <span class="<%=resources.iconLink%>"></span>
               <%=resources.language%>
             </a>
-            <div class="dropdown-menu m-0">
-              <a href="" class="dropdown-item changeLang" onclick="changeLanguage('az')">
+            <div class="dropdown-menu m-0 dark">
+              <a href="" class="dropdown-item changeLang  " onclick="changeLanguage('az')">
                 <span class="fi fi-az"></span> Az
               </a>
-              <a href="" class="dropdown-item changeLang" onclick="changeLanguage('de')">
+              <a href="" class="dropdown-item changeLang " onclick="changeLanguage('de')">
                 <span class="fi fi-de"></span> De
               </a>
             </div>
@@ -75,10 +75,12 @@
     body.classList.toggle('dark-mode');
 
  
-
+    var logoImage = document.getElementById('logoImage');
     var darkModeIcon = document.getElementById('darkModeIcon');
     darkModeIcon.classList.toggle('fa-moon');
     darkModeIcon.classList.toggle('fa-sun');
+
+ 
   }
 
 </script>
@@ -119,11 +121,15 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-
+  .dark-mode .nav-link{
+    color: white !important;
+  }
   .language-dropdown-item:hover {
     background-color: #f8f9fa;
   }
-
+  .dark-mode .darkMenuIcon{
+    background-color:white;
+  }
   #darkModeButton {
     background-color: transparent;
     border: none;
@@ -134,9 +140,13 @@
     color: #000000;
     font-size: 20px;
   }
-
+  .dark-mode .dark{
+    background-color:#1c1c1c !important;
+    color: #1c1c1c;
+  }
   .dark-mode #darkModeIcon {
     color: gold;
   }
+  
   
 </style>

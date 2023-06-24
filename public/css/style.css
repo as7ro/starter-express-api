@@ -129,6 +129,10 @@
 .dark-mode .container-fluid.headTopCol {
   background-color: #000000;
 }
+.dark-mode .language{
+    color: #000000;
+}
+
 
 .dark-mode .container-fluid.headTopCol .display-1.text-white {
   color: #ffffff;
