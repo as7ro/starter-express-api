@@ -12,7 +12,7 @@ export const langAz = {
   register: 'Qeydiyyat',
   logout: "Çıxış",
   joinUs: "Bizə qoşul",
-  reyaset: "Rəyasət Heyyəti",
+  reyaset: "Rəyasət Heyəti",
   uzvluk:"Üzvlük",
   project:"Layihələr",
   dashboard:"Mənim səhifəm",
