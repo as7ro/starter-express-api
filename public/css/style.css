@@ -154,6 +154,12 @@
   color: #ffffff !important;
 }
 
+.dark-mode .lastNewses{
+    background-color: #020822;
+}
+.dark-mode .lastNewses h6{
+    color: white !important;
+}
 .dark-mode .memberClass h1,
 .dark-mode .memberClass h2,
 .dark-mode .memberClass h3,
