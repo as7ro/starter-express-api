@@ -105,7 +105,7 @@
                   <div class="col-md-6 itttem" id="search-results" data-category="<%= n.categoryId.catNameAz%>"
                     onclick="goToPage('/news/<%=n._id %>')">
 
-                    <div class="card mb-3">
+                    <div class="card mb-3 darkNews">
                       <% if (n.images && n.images.length> 0) { %>
                         <img class="card-img-top" src="<%= n.images[0].url %>" alt="">
                         <% } %>

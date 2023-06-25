@@ -145,6 +145,14 @@
 .dark-mode .memberClass {
     background-color: #020822;
 }
+.dark-mode .darkNews h1,
+.dark-mode .darkNews h2,
+.dark-mode .darkNews h3,
+.dark-mode .darkNews h4,
+.dark-mode .darkNews h5,
+.dark-mode .darkNews h6 {
+  color: #ffffff !important;
+}
 
 .dark-mode .memberClass h1,
 .dark-mode .memberClass h2,
