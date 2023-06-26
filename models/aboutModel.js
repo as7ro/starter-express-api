@@ -29,15 +29,15 @@ const aboutSchema = new Schema({
   },
   fb:{
   type:String,
-  default:"https://www.facebook.com/"
+  default:"https://www.facebook.com/damv.e.v"
   },
   inst:{
     type:String,
-    default:"https://www.instagram.com/"
+    default:"https://instagram.com/damvev?igshid=YmMyMTA2M2Y="
   },
   youtube:{
     type:String,
-    default:"https://www.youtube.com/"
+    default:"https://www.youtube.com/@deutschaserbaidschanischer1240"
   }
 }
 );

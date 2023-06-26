@@ -260,7 +260,7 @@ const sendResetPasswordEmail = async (email, token) => {
     });
 
     await transporter.sendMail(mailOptions);
-   
+    console.log('Password reset email sent');
   } catch (err) {
     console.error(err);
   }
