@@ -53,12 +53,12 @@
                           <% } %>
                             <% } else{%>
                               <div class="card-body" style="text-align: center;">
-                                <iframe src="/files/<%= joinUs.files[1].file_id %>" width="200" height="200"></iframe>
+                                <iframe src="/files/<%= joinUs.files[0].file_id %>" width="200" height="200"></iframe>
         
                                 <h5 class="card-title">
-                                  <%= joinUs.files[1].file_id %>
+                                  <%= joinUs.files[0].file_id %>
                                 </h5>
-                                <a href="/files/<%= joinUs.files[1].file_id %>" class="btn btn-primary" download>
+                                <a href="/files/<%= joinUs.files[0].file_id %>" class="btn btn-primary" download>
                                   <i class="fas fa-download"></i>
                                   <%= resources.download %>
                                 </a>
