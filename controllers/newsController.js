@@ -166,7 +166,7 @@ const getAllNews = async (req, res) => {
 const getNewsDetail = async (req, res) => {
   try {
 
-    const language = req.cookies.language || 'az';
+    const language = req.cookies.language || Defaults.defaultLanguage;
     const newsId = req.params.id;
     const news_ = await News.findById(newsId);
     let latestNews = await News.find({}).sort({ createdAt: -1 }).limit(8);

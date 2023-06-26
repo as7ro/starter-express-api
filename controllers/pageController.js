@@ -5,15 +5,18 @@ import * as projectService from "../services/projectService.js"
 import * as newsService from "../services/newsService.js"
 import * as termsService from "../services/termsService.js"
 import * as userService from "../services/userService.js"
+import * as Defaults from "../config/defaults.js"
+
 
 
 
 const getIndexPage =async (req, res) => {
-    const about = await aboutService.getAbout(req.cookies.language)
-    const projects = await projectService.getProjects(req.cookies.language)
-    const newses =  await newsService.getNews(req.cookies.language)
-    const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
-    const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
+    const language = req.cookies.language || Defaults.defaultLanguage;
+    const about = await aboutService.getAbout(language)
+    const projects = await projectService.getProjects(language)
+    const newses =  await newsService.getNews(language)
+    const users = await userService.getUser(language, "reyaset_heyyeti_uzvleri" );
+    const president = await userService.getUser(language, "rehber_uzv" );
 
     res.render('index', {
         link: "index",
@@ -25,7 +28,8 @@ const getIndexPage =async (req, res) => {
     })
 }
 const getAboutPage = async (req, res) => {
-    const about = await aboutService.getAbout(req.cookies.language)
+    const language = req.cookies.language || Defaults.defaultLanguage;
+    const about = await aboutService.getAbout(language)
 
 
     res.render('about', {
@@ -35,7 +39,8 @@ const getAboutPage = async (req, res) => {
   
 }
 const getJoinUsPage = async (req, res) => {
-    const joinUs = await joinUsService.getJoinUs(req.cookies.language)
+    const language = req.cookies.language || Defaults.defaultLanguage;
+    const joinUs = await joinUsService.getJoinUs(language)
     const lang = req.cookies.language
     res.render('joinUs', {
         link: "joinUs",
@@ -47,8 +52,9 @@ const getJoinUsPage = async (req, res) => {
 }
 
 const getMembersPage = async (req, res) => {
-    const users = await userService.getUser(req.cookies.language, "reyaset_heyyeti_uzvleri" );
-    const president = await userService.getUser(req.cookies.language, "rehber_uzv" );
+    const language = req.cookies.language || Defaults.defaultLanguage;
+    const users = await userService.getUser(language, "reyaset_heyyeti_uzvleri" );
+    const president = await userService.getUser(language, "rehber_uzv" );
     res.render('members', {
         link: "members",
         users,
@@ -56,7 +62,8 @@ const getMembersPage = async (req, res) => {
     })
 }
 const getAllMembersPage = async (req, res) => {
-    const terms = await termsService.getTerms(req.cookies.language)
+    const language = req.cookies.language || Defaults.defaultLanguage;
+    const terms = await termsService.getTerms(language)
     res.render('allMembers', {
         link: "allMembers",
         terms
@@ -65,8 +72,8 @@ const getAllMembersPage = async (req, res) => {
 const getProjectsPage = async (req, res) => {
     const pageNumber = req.query.page || 1; // İstek parametresinden sayfa numarasını alın
     const limit = 6; // Her sayfada kaç projenin görüntüleneceğini belirtin
-    const language = req.cookies.language; // Dil bilgisini alın veya uygun şekilde elde edin
-  
+    const language = req.cookies.language || Defaults.defaultLanguage; // Dil bilgisini alın veya uygun şekilde elde edin
+    
     try {
       const { projects, totalPages } = await projectService.getProjects(pageNumber, limit, language);
   

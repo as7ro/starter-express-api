@@ -1,1 +1,1 @@
-export const defaultLanguage="az";
+export const defaultLanguage="de";
