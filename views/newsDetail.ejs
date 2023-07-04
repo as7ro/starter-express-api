@@ -1,4 +1,6 @@
-<%- include("partials/_header") %>
+
+
+<%- include("partials/_header", { ogTitle:  news_.title, ogDescription: news_.description, ogImage: news_.images[0].url, ogUrl: news_y._id, ogType: "article" }) %>
     <style>
         .no-gutters:hover {
             opacity: 0.8;
