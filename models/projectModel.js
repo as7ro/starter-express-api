@@ -29,8 +29,14 @@ const projectSchema = new Schema(
         type:String,
         required: true,
         trim: true,
-
-    }
+    },
+    url:{
+      type:String,
+      
+    },
+    image_id: {
+      type: String,
+    },
 
   },
   {

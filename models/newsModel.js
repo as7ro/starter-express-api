@@ -42,6 +42,15 @@ const { Schema } = mongoose;
 
 const newsSchema = new Schema(
   {
+    _id: {
+      type: String, 
+      required: true, 
+      unique: true, 
+      default: function () {
+      
+        return createSlug(this.titleGe);
+      }
+    },
     titleAz: {
       type: String,
       required: true,
@@ -89,6 +98,13 @@ newsSchema.virtual('formattedDate').get(function () {
   return this.createdAt.toLocaleDateString('en-GB', options);
 });
 
+
+const createSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/ /g, '-') // Boşlukları tireyle değiştirir
+    .replace(/[^\w-]+/g, ''); // Alfanumerik olmayan karakterleri kaldırır
+};
 const News = mongoose.model('News', newsSchema);
 
 export default News;
