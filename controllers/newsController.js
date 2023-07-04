@@ -52,7 +52,9 @@ const getAllNews = async (req, res) => {
     const query = {
       $or: [
         { titleAz: { $regex: searchTerm, $options: 'i' } },
-        { descriptionAz: { $regex: searchTerm, $options: 'i' } }
+        { descriptionAz: { $regex: searchTerm, $options: 'i' } },
+        { titleGe: { $regex: searchTerm, $options: 'i' } },
+        { descriptionGe: { $regex: searchTerm, $options: 'i' } }
       ]
     };
 
