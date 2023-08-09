@@ -115,6 +115,10 @@
   color: #ffffff;
 }
 
+.darkMode h5{
+    color: #000000 !important;
+}
+
 .dark-mode h1,
 .dark-mode h2,
 .dark-mode h3,

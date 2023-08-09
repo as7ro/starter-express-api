@@ -52,7 +52,10 @@
                                 <div class="card-body">
                                   <h5 class="fw-normal fst-italic text-primary mb-4 text-center"><%=resources.president%></h5>
                                   <h3 class="card-title text-center"><%-pres.user_name%>  <%-pres.user_surname%></h3>
-                                  <p class="card-text text-center"><%-pres.description%></p>
+                                  <details class="mb-3">
+                                    <summary class="text-center detail fs-5" ><%=resources.job%></summary>
+                                    <p> <p class="card-text text-center"  id="user-description"><%-pres.description%></p></p>
+                                  </details>
                                   <div class="d-flex mt-auto border-top p-4 justify-content-center">
                                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=pres.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>

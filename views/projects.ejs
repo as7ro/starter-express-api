@@ -20,7 +20,12 @@
 .pagination a:hover {
   background-color: #f4f4f4;
 }
-
+.image-container {
+  max-height: 80vh; /* Örnek: Modal yüksekliğinin %80'i kadar olacak */
+  margin: 0 auto;  /* Örnek: Yatayda merkezlemek için */
+  text-align: center; /* Örnek: Görüntüyü yatayda ortala */
+  overflow: hidden; /* Görüntü taşmalarını engelle */
+}
 .pagination .current-page {
   background-color: #007bff;
   color: #fff;
@@ -124,9 +129,14 @@
               <div class="modal fade" id="projectModal-<%= i %>" tabindex="-1" aria-labelledby="projectModalLabel-<%= i %>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="projectModalLabel-<%= i %>"><%= projects[i].title %></h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header d-inline-block">
+                      <div class="d-flex">
+                        <h5 class="modal-title darkMode" style="color: black;" id="projectModalLabel-<%= i %>"><%= projects[i].title %></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div>
+                        <p style="color: black;"><%= projects[i].description %></p>
+                      </div>
                     </div>
                     <div class="modal-body">
                       <div class="embed-responsive embed-responsive-16by9 h-100">
@@ -140,13 +150,20 @@
               </div>
               <div class="modal fade" id="projectImageModal-<%= i %>" tabindex="-1" aria-labelledby="projectImageModalLabel-<%= i %>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="projectImageModalLabel-<%= i %>"><%= projects[i].title %></h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <div class="modal-content" style="height: auto;">
+                    <div class="modal-header d-inline-block">
+                      <div class="d-flex">
+                        <h5 class="modal-title darkMode" style="color: black;" id="projectModalLabel-<%= i %>"><%= projects[i].title %></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div>
+                        <p style="color: black;"><%= projects[i].description %></p>
+                      </div>
                     </div>
                     <div class="modal-body">
-                      <img src="<%= projects[i].url %>" alt="Proje Resmi" class="img-fluid">
+                      <div class="image-container">
+                        <img src="<%= projects[i].url %>" alt="Proje Resmi" class="img-fluid">
+                      </div>
                     </div>
                   </div>
                 </div>
