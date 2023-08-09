@@ -1,0 +1,47 @@
+<%- include("../partials/_nav")  %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Bizə qoşul səhifəsinin güncəllənməsi</h1>
+
+        <div class="card mt-4">
+            
+            <div class="card-body">
+                <form action="<%= joinUs._id %>" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                      <label for="descriptionAz" class="form-label">Açıqlama mətnı Azərbaycan dilində</label>
+                      <textarea name="descriptionAz" id="editor1"><%=joinUs.descriptionAz%></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="descriptionGe" class="form-label">Açıqlama mətnı Alman dilində</label>
+                      <textarea name="descriptionGe" id="editor2"><%=joinUs.descriptionGe%></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="file" class="form-label">Fayl Seçin</label>
+                      <input class="form-control" type="file" id="file" name="file">
+                    </div>
+                    <div class="mb-3">
+                      <label for="files" class="form-label">fayllar Seçin</label>
+                      <input class="form-control" type="file" id="files" name="files" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Güncəllə</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/_footer")  %>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+<script>
+  
+  CKEDITOR.replace('editor1',{
+    entities: false,
+  });
+  CKEDITOR.replace('editor2',{
+  
+    removePlugins: 'trackchanges',
+    entities: false,
+  });
+  
+  </script>

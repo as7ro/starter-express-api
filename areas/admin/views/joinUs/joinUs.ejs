@@ -1,0 +1,106 @@
+<style>
+    .pointer {
+        cursor: pointer;
+    }
+</style>
+
+
+<%- include("../partials/_nav") %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Bizə qoşul səhifəsi</h1>
+        
+
+
+        <!-- Kullanıcı Listesi -->
+        <div class="card mt-4">
+            
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>açiqlama</th>
+                            <th>ayarlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <%for(join of joinUs) { %>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    <%-join.descriptionAz %>
+                                </td>
+                                <td>
+                                    <a href="joinUS/<%=join._id %>" class="btn btn-success detail-btn"><i
+                                            class="fa fa-eye"></i></a>
+
+                                    <a href="joinUs/update/<%=join._id %>" class="btn btn-primary"><i
+                                            class="fa fa-pencil-alt"></i></a>
+
+                                </td>
+                             
+
+                            </tr>
+                            <% } %>
+
+                                <% %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Silme İşlemi Onayı</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Gerçekten silmek istediğinize emin misiniz?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kullanıcı Ekleme Formu -->
+
+    </div>
+
+    <script>
+        var confirmDeleteButton = document.getElementById("confirmDeleteButton");
+        var deleteForm = document.getElementById("deleteForm");
+
+        confirmDeleteButton.addEventListener("click", function () {
+            deleteForm.submit();
+        });
+
+
+
+        function toggleCardContent() {
+            const cardContent = document.getElementById("cardContent");
+            if (cardContent.style.display === "none") {
+                cardContent.style.display = "block";
+            } else {
+                cardContent.style.display = "none";
+            }
+        }
+        function toggleCardContentCat() {
+            const cardContent1 = document.getElementById("cardContent1");
+            if (cardContent1.style.display === "none") {
+                cardContent1.style.display = "block";
+            } else {
+                cardContent1.style.display = "none";
+            }
+        }
+    </script>
+
+    <%- include("../partials/_footer") %>

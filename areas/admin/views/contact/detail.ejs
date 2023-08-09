@@ -1,0 +1,30 @@
+<%- include("../partials/_nav")  %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Kontakt məlumatları</h1>
+
+        <div class="card mt-4">
+            
+            <div class="card-body">
+                <div class="row">
+                    
+                    <div class="col-md-8">
+                        
+                        <p class="card-text"><b>Məkanımız :</b> <%= contact.location %></p>
+
+                        <p class="card-text"><b>E-poçt ünvanımız :</b> <%= contact.gmail %></p>
+                        <p class="card-text"><b>Telefon :</b> <%= contact.tel %></p>
+
+                        <p class="card-text"><b>facebook linki :</b>   <%= contact.fb %></p>
+                        <p class="card-text"><b>instagram linki: </b>  <%= contact.inst %></p>
+                        <p class="card-text"><b>youtube linki:</b>   <%= contact.youtube %></p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/_footer")  %>

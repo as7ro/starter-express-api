@@ -1,0 +1,226 @@
+<%- include("partials/_header")  %>
+
+
+<body>
+    <!-- Topbar Start -->
+    <%- include("partials/_topbar")  %>
+
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <%- include("partials/_navbar")  %>
+
+    <!-- Navbar End -->
+
+
+    <!-- Search Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary  border-bottom border-5"><%=resources.reyaset%></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Search End -->
+
+
+    <!-- Search Result Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                <% for(pres of president) { %>  
+                  <div class="col-lg-12 d-flex justify-content-center ">
+                    <div class=" ">
+                        <div class="row g-0 bg-light rounded ">
+                            
+                            <!-- <div class="card">
+                                <img src="<%=pres.url%>" alt="Car Image">
+                                <div class="card-overlay">
+                                    <h5 class="fw-normal fst-italic text-primary mb-4"><%=resources.president%></h5>
+                                  <h3 class="card-title"><%=pres.user_name%>  <%=pres.user_surname%></h3>
+                                  <p class="card-content"><%=pres.description%></p>
+                                  <div class="d-flex border-top p-4">
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=pres.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </div>
+                                </div>
+                               
+                              </div> -->
+                              <div class="card" style="width: 24rem;">
+                                <img src="<%=pres.url%>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 class="fw-normal fst-italic text-primary mb-4 text-center"><%=resources.president%></h5>
+                                  <h3 class="card-title text-center"><%-pres.user_name%>  <%-pres.user_surname%></h3>
+                                  <p class="card-text text-center"><%-pres.description%></p>
+                                  <div class="d-flex mt-auto border-top p-4 justify-content-center">
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=pres.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </div>
+                                </div>
+                              </div>
+
+
+                            <!-- <div class="col-12 col-sm-5 h-100">
+                                <img class="img-fluid h-100" src="<%=pres.url%>" >
+                            </div>
+                            <div class="col-12 col-sm-7 h-100 d-flex flex-column memberClass">
+                                <div class="mt-auto p-4">
+                                    <h6 class="fw-normal fst-italic text-primary mb-4"><%=resources.president%></h6>
+                                    <h3><%=pres.user_name%>  <%=pres.user_surname%></h3>
+                                    <h6 class="fw-normal fst-italic text-primary mb-4"><%=pres.description%></h6>
+                                  
+                                </div>
+                                <div class="d-flex mt-auto border-top p-4">
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=pres.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                  </div>  
+                <% } %>
+
+                <% for(user of users) { %>    
+                
+                <div class="col-lg-4 d-flex justify-content-center  team-item">
+                    <div class="">
+                        <!-- <div class="col-12 col-sm-5 h-100 memberClass">
+                            <img class="img-fluid h-100" src="<%=user.url%>" >
+                        </div>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column memberClass">
+                            <div class="mt-auto p-4">
+                                <h3><%=user.user_name%>  <%=user.user_surname%></h3>
+                                <h6 class="fw-normal fst-italic text-primary mb-4"><%-user.description%></h6>
+                                
+                            </div>
+                            <div class="d-flex mt-auto border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=user.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=user.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div> -->
+                        <!-- <div class="card carduser">
+                            <img src="<%=user.url%>" alt="">
+                            <div class="card-overlay">
+                              <h3 class="card-title"><%=user.user_name%>  <%=user.user_surname%></h3>
+                              <p class="card-content"><%-user.description%></p>
+                              <div class="d-flex border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=pres.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=pres.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </div>
+                            </div>
+                           
+                          </div> -->
+                          <div class="card" style="width: 22rem;">
+                            <img src="<%=user.url%>" class="card-img-top object-fit" alt="...">
+                            <div class="card-body card-user">
+                              <h3 class="card-title text-center"><%=user.user_name%>  <%=user.user_surname%></h3>
+                              <details class="mb-3">
+                                <summary class="text-center detail fs-5" ><%=resources.job%></summary>
+                                <p> <p class="card-text text-center"  id="user-description"><%-user.description%></p></p>
+                              </details>
+                             
+                              <div class="icon-body">
+                                <div class="d-flex  border-top p-4 justify-content-center ">
+                                  <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="<%=user.fb%>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                  <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="<%=user.inst%>" target="_blank"><i class="fab fa-instagram"></i></a>
+                              </div>
+                              </div>
+                              
+                            </div>
+                            
+                          </div>
+                    </div>
+                </div>
+                <% } %>
+              
+                
+            </div>
+        </div>
+    </div>
+    <!-- Search Result End -->
+
+<style>
+    @media (max-width: 576px) {
+  /* Küçük ekranlar için stil kuralları burada tanımlanır */
+  .team-item .col-12.col-sm-5 img,
+.team-item .col-12.col-sm-5 picture {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+}
+.icon-body{
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-body{
+  
+  border-bottom-left-radius: 10px!important;
+  border-bottom-right-radius: 10px!important;
+}
+
+.card-img-top{
+  height: 300px;
+}
+.detail{
+  font-size: 15px;
+}
+</style>
+
+
+    
+<script>
+ var isDarkMode = localStorage.getItem("darkMode") === "true";
+        
+        // Dark mode geçişini işleyen fonksiyon
+        function toggleDarkMode() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            // Light mode ayarları
+            body.classList.remove("dark-mode");
+            isDarkMode = false;
+            darkModeIcon.classList.remove('fa-sun')
+            darkModeIcon.classList.add('fa-moon')  
+            logoImage.src = '/img/damv.png';
+        } else {
+            // Dark mode ayarları
+            body.classList.add("dark-mode");
+            isDarkMode = true;
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        
+          // Dark mode tercihini yerel depolamada güncelle
+          localStorage.setItem("darkMode", isDarkMode);
+        }
+        
+
+        
+        // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
+        window.addEventListener("load", function() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            body.classList.add("dark-mode");
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        });
+        // var paragrafMetni = document.getElementById("user-description").textContent;
+        
+        // // İlk 50 karakteri ve sonuna üç noktayı ekliyoruz
+        // var ilk50Karakter = paragrafMetni.slice(0, 40);
+        // var metinUzunlugu = paragrafMetni.length;
+        // var gosterilecekMetin = ilk50Karakter + (metinUzunlugu > 40 ? "..." : "");
+
+        // // Sonucu gösteriyoruz
+        // document.getElementById("user-description").textContent = gosterilecekMetin;
+        // console.log(gosterilecekMetin)
+</script>
+    <!-- Footer Start -->
+    <%- include("partials/_footer")  %>

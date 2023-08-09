@@ -1,0 +1,206 @@
+
+
+<%- include("partials/_header", { ogTitle:  news_.title, ogDescription: news_.description, ogImage: news_.images[0].url, ogUrl: news_._id, ogType: "article" }) %>
+    <style>
+        .no-gutters:hover {
+            opacity: 0.8;
+        }
+
+        .no-gutters {
+            transition: opacity 0.3s ease;
+        }
+
+        .img-thumbnail {
+            cursor: pointer;
+        }
+        .delipoinyer{
+            cursor: pointer;
+        }
+    </style>
+
+    <body>
+        <!-- Topbar Start -->
+        <%- include("partials/_topbar")  %>
+
+        <!-- Topbar End -->
+
+
+        <!-- Navbar Start -->
+        <%- include("partials/_navbar") %>
+
+            <!-- Navbar End -->
+
+
+            <!-- Blog Start -->
+            <div class="container-fluid py-5">
+                <div class="container">
+                    <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                        <h5 class="d-inline-block text-primary  border-bottom border-5"><%=resources.news%></h5>
+                        
+                    </div>
+                    <div class="row g-5">
+                        <div class="col-lg-8">
+                            <!-- Blog Detail Start -->
+                            <!-- Ana Fotoğraf -->
+                            <div class="card mb-3">
+                                <% if (news_.images && news_.images.length> 0 && news_.images[0].url) { %>
+                                    <img class="card-img-top" src="<%= news_.images[0].url %>"
+                                        style="max-width: 100%; max-height: 500px;" alt="Ana Fotoğraf">
+                                    <% } %>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%- news_.title %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%- news_.description %>
+                                            </p>
+                                        </div>
+                            </div>
+
+                            <!-- Diğer Fotoğraflar -->
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=resources.samePhoto%></h5>
+                                    <div class="row">
+                                        <% for (let i=1; i < news_.images.length; i++) { %>
+                                            <div class="col-md-4 col-6 mb-3 ">
+                                                <img src="<%= news_.images[i].url %>" class="img-thumbnail"
+                                                    alt="Resim <%= i %>" data-bs-toggle="modal"
+                                                    data-bs-target="#resimModal"
+                                                    style="height: 300px; width: 100%;"
+                                                    >
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="resimModal" class="modal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <% for (let i=1; i < news_.images.length; i++) { %>
+                                                    <div class="carousel-item <% if(i === 1) { %>active<% } %>">
+                                                        <img src="<%= news_.images[i].url %>" class="d-block w-100" style="height:600px;"
+                                                            alt="Resim <%= i %>">
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#carouselExample" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden"><%=resources.preview%></span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#carouselExample" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden"><%=resources.next%></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Haber İsmi, Açıklama ve Tarih -->
+
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=resources.lastNews%></h5>
+                                    <% for (const news of latestNews) { %>
+                                        <!-- slfj -->
+
+                                        <div class="card mb-3 delipoinyer" onclick="goToPage('/news/<%= news._id %>')">
+
+                                            <div class="row no-gutters lastNewses">
+                                                <% if (news.images && news.images.length> 0) { %>
+                                                    <div class="col-md-3 col-3">
+                                                        <img src="<%= news.images[0].url %>" class="card-img"
+                                                            style="height: 90px; width: 90px;" alt="Haber Resmi">
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="col-md-3 col-3">
+                                                            No Image Available
+                                                        </div>
+                                                        <% } %>
+                                                            <div class="col-md-8 col-8">
+                                                                <div class="card-body">
+                                                                    <h6 class="card-title">
+                                                                        <%- news.title %>
+                                                                    </h6>
+
+                                                                </div>
+                                                            </div>
+                                            </div>
+
+                                        </div>
+
+                                        <% } %>
+                                            <!-- //dfdffff -->
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog End -->
+            <script>
+                function goToPage(url) {
+                    window.location.href = url;
+                }
+            </script>
+
+    
+<script>
+    var isDarkMode = localStorage.getItem("darkMode") === "true";
+        
+        // Dark mode geçişini işleyen fonksiyon
+        function toggleDarkMode() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            // Light mode ayarları
+            body.classList.remove("dark-mode");
+            isDarkMode = false;
+            darkModeIcon.classList.remove('fa-sun')
+            darkModeIcon.classList.add('fa-moon')  
+            logoImage.src = '/img/damv.png';
+        } else {
+            // Dark mode ayarları
+            body.classList.add("dark-mode");
+            isDarkMode = true;
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        
+          // Dark mode tercihini yerel depolamada güncelle
+          localStorage.setItem("darkMode", isDarkMode);
+        }
+        
+
+        
+        // Sayfa yüklendiğinde dark mode tercihine göre sayfayı güncelle
+        window.addEventListener("load", function() {
+          var body = document.body;
+        
+          if (isDarkMode) {
+            body.classList.add("dark-mode");
+            darkModeIcon.classList.remove('fa-moon')
+              darkModeIcon.classList.add('fa-sun')
+              logoImage.src = '/img/damv2.png';
+          }
+        });
+</script>
+            <!-- Footer Start -->
+            <%- include("partials/_footer") %>

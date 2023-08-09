@@ -1,0 +1,283 @@
+<style>
+    .pointer {
+        cursor: pointer;
+    }
+</style>
+
+
+<%- include("../partials/_nav") %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Xəbərlər Səhifəsi</h1>
+        <div class="card mt-4 ">
+            <div class="card-header bg-primary text-light pointer" onclick="toggleCardContent()">
+                Xəbər elavə etmək üçün klik edin.
+            </div>
+            <div class="card-body bg-dark" id="cardContent" style="display: none;">
+
+                <form action="/admin/news" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-light">Xəbərin başlığı Azərbaycan dilində</label>
+                        <textarea type="text" class="form-control" placeholder="başlıq Az" id="nameAz"
+                            name="titleAz"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-light">Xəbərin başlığı Alman dilində</label>
+                        <textarea type="text" class="form-control" placeholder="başlıq De" id="nameGe"
+                            name="titleGe"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-light">Xəbərin içəriyi Azərbaycan dilində</label>
+                        <textarea type="text" class="form-control" placeholder="içərik Az" name="descriptionAz"
+                            id="descAz"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-light">Xəbərin içəriyi Alman dilində</label>
+                        <textarea type="text" class="form-control" placeholder="içərik De" name="descriptionGe"
+                            id="descGe"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label text-light">Xəbərin kateqoriyası</label>
+                        <select class="form-control" id="role" name="categoryId">
+                            <% newsCats.forEach(function(category) { %>
+                                <option value="<%= category._id %>">
+                                    <%= category.catNameAz %>
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="photo" class="form-label text-light">Şəkil seçin</label>
+                        <input class="form-control" type="file" id="photo" name="image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="photo" class="form-label text-light ">Şəkillər seçin</label>
+                        <input class="form-control" type="file" id="photo" name="images" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Əlavə et</button>
+                </form>
+            </div>
+        </div>
+        <div class="card mt-4  ">
+            <div class="card-header bg-primary text-light pointer" onclick="toggleCardContentCat()">
+                Kateqoriya elavə etmək üçün klik edin.
+            </div>
+            <div class="card-body bg-dark" id="cardContent1" style="display: none;">
+                <form action="/admin/newscat" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-light">Kateqoriya adı qeyd edin Azərbaycan dilində</label>
+                        <input type="text" placeholder="kategoriyanin adi az" class="form-control" id="name"
+                            name="catNameAz">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-light">Kateqoriya adı qeyd edin Alman dilində</label>
+                        <input type="text" placeholder="kategoriyanin adi ge" class="form-control" id="name"
+                            name="catNameGe">
+                    </div>
+                    <button type="submit" class="btn btn-primary">əlavə et</button>
+                </form>
+            </div>
+        </div>
+        <!-- category -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Kateqoriyaların siyahısı
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kateqoriya adı Az</th>
+                            <th>Kateqoriya adı De</th>
+                            <th>Ayarlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <p class="d-none">
+                            <%= count=1 %>
+                        </p>
+                        <%for(cat of newsCats) { %>
+                            <tr>
+                                <td>
+                                    <%=count++%>
+                                </td>
+                                <td>
+                                    <%=cat.catNameAz %>
+                                </td>
+                                <td>
+                                    <%=cat.catNameGe %>
+                                </td>
+
+
+                                <td>
+
+                                    <a href="news/updateCat/<%=cat._id %>" class="btn btn-primary"><i
+                                            class="fa fa-pencil-alt"></i></a>
+
+                                </td>
+                            </tr>
+                            <% } %>
+
+                                <% %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <!-- Kullanıcı Listesi -->
+        <div class="card mt-4">
+            <div class="card-header">
+               Xəbərlərin siyahısı
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Xəbər adı Az</th>
+                            <th>Xəbər adı De</th>
+                            <th>category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <p class="d-none">
+                            <%= count=1 %>
+                        </p>
+                        <%for(news of newses) { %>
+                            <tr>
+                                <td>
+                                    <%=count++%>
+                                </td>
+                                <td>
+                                    <%-news.titleAz %>
+                                </td>
+                                <td>
+                                    <%-news.titleGe %>
+                                </td>
+                                <td>
+                                    <%-news.categoryId.catNameAz %>
+                                </td>
+
+                                <td>
+                                    <a href="news/<%=news._id %>" class="btn btn-success detail-btn"><i
+                                            class="fa fa-eye"></i></a>
+
+                                    <a href="news/update/<%=news._id %>" class="btn btn-primary"><i
+                                            class="fa fa-pencil-alt"></i></a>
+                                    <form class="my-1"  id="deleteFormNews<%= news._id %>" action="news/delete/<%=news._id%>" method="post">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModal">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+
+
+                                </td>
+                            </tr>
+                            <% } %>
+
+                                <% %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Həqiqətən silmək istəyirsən?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kullanıcı Ekleme Formu -->
+
+    </div>
+    <script src="https://cdn.tiny.cloud/1/bp862hjypz1mklcxhz8h7d7jviyx43rf4lukys22x4i9lxfy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    
+  tinymce.init({
+    selector: '#descriptionAz , #descriptionDe',
+   
+    height: 500,
+    plugins: 'link image table',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | table',
+  });
+</script>
+    <script>
+        var confirmDeleteButtons = document.querySelectorAll(".btn-danger"); // Tüm "Sil" düğmelerini seçer
+
+confirmDeleteButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        var formId = button.parentElement.id; // Formun ID'sini alır
+        var form = document.getElementById(formId); // Benzersiz formu seçer
+        form.submit();
+    });
+});
+        var confirmDeleteButton = document.getElementById("confirmDeleteButton");
+        var deleteForm = document.getElementById("deleteForm");
+
+        confirmDeleteButton.addEventListener("click", function () {
+            deleteForm.submit();
+        });
+
+
+
+        function toggleCardContent() {
+            const cardContent = document.getElementById("cardContent");
+            if (cardContent.style.display === "none") {
+                cardContent.style.display = "block";
+            } else {
+                cardContent.style.display = "none";
+            }
+        }
+        function toggleCardContentCat() {
+            const cardContent1 = document.getElementById("cardContent1");
+            if (cardContent1.style.display === "none") {
+                cardContent1.style.display = "block";
+            } else {
+                cardContent1.style.display = "none";
+            }
+        }
+      
+    </script>
+    
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+CKEDITOR.replace('nameAz',{
+        entities: false,
+      });
+      CKEDITOR.replace('nameGe',{
+      
+        removePlugins: 'trackchanges',
+        entities: false,
+      });
+      CKEDITOR.replace('descAz',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
+    CKEDITOR.replace('descGe',{
+      
+      removePlugins: 'trackchanges',
+      entities: false,
+    });
+    </script>
+
+    <%- include("../partials/_footer") %>

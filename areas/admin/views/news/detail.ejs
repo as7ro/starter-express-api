@@ -1,0 +1,39 @@
+<%- include("../partials/_nav") %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>
+            Xəbər Məlumatları
+        </h1>
+
+        <div class="card mt-4">
+            
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-4 ">
+                        <% for (const image of news_.images) { %>
+                            <img src="<%- image.url %>" class="img-fluid mt-2" alt="<%- news_.name %>">
+                            <% } %>
+                    </div>%>
+                    <div class="col-md-2 ">
+                            <p class="d-none">gizli sahe</p>
+                    </div>%>
+                    <div class="col-md-6">
+                        <p class="card-title"><b>Xəbərin başlığı Azərbaycan dilində :</b> <%- news_.titleAz %>
+                        </p>
+                        <p class="card-title"><b>Xəbərin başlığı Alman dilində :</b><%- news_.titleGe %>
+                        </p>
+                        <p class="card-text"><b>Xəbərin içəriyi Azərbaycan dilində :</b> <%- news_.descriptionAz %>
+                        </p>
+                        <p class="card-text"><b>Xəbərin içəriyi Alman dilində :</b> <%- news_.descriptionGe %>
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <%- include("../partials/_footer") %>

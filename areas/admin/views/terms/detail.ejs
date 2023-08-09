@@ -1,0 +1,27 @@
+<%- include("../partials/_nav") %>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>
+            Qayda məlumatları
+        </h1>
+
+        <div class="card mt-4">
+           
+            <div class="card-body d-flex">
+                <div class="col-md-8 " style="margin-left: 150px;">
+                    <p class="card-title"><b>Ad Azərbaycan dilində : </b> <%= terms.termsNameAz %>
+                    </p>
+                    <p class="card-text"><b>Ad Alman dilində : </b><%= terms.termsNameGe %>
+                    </p>
+                    <p class="card-text"><b>İçərik Azərbaycan dilində : </b><%= terms.termsDescAz %>
+                    </p>
+                    <p class="card-text"><b>İçərik Alman dilində : </b><%= terms.termsDescGe %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <%- include("../partials/_footer") %>

@@ -1,0 +1,152 @@
+<div class="container-fluid sticky-top bg-white shadow-sm dark">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 dark">
+      <a href="/" class="navbar-brand">
+        <img id="logoImage" src="/img/damv.png" alt="Damvev Logo">
+      </a>
+      <button class="navbar-toggler darkMenuIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse dark" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <a href="/" class="nav-item nav-link <%=link==="index" && "active" %>"><%=resources.home%></a>
+          <a href="/about" class="nav-item nav-link <%=link==="about" && "active" %>"><%=resources.about%></a>
+          <a href="/joinUs" class="nav-item nav-link <%=link==="joinUs" && "active" %>"><%=resources.joinUs%></a>
+          <a href="/members" class="nav-item nav-link <%=link==="members" && "active" %>"><%=resources.reyaset%></a>
+          <a href="/allMembers" class="nav-item nav-link <%=link==="allMembers" && "active" %>"><%=resources.uzvluk%></a>
+          <a href="/news" class="nav-item nav-link <%=link==="news" && "active" %>"><%=resources.news%></a>
+          <a href="/projects" class="nav-item nav-link <%=link==="projects" && "active" %>"><%=resources.project%></a>
+
+          <% if (user) { %>
+            <% if (user.role === "rehber_uzv" || user.role === "reyaset_heyyeti_uzvleri") { %>
+              <a href="/users/dashboard" class="nav-item nav-link <%= link === 'dashboard' ? 'active' : '' %>"><%= resources.dashboard %></a>
+              <a href="/logout" class="nav-item nav-link"><%= resources.logout %></a>
+            <% } else if (user.role === "admin") { %>
+              <a href="/admin" class="nav-item nav-link">Admin</a>
+              <a href="/logout" class="nav-item nav-link"><%= resources.logout %></a>
+            <% } else { %>
+              <a href="/logout" class="nav-item nav-link"><%= resources.logout %></a>
+            <% } %>
+          <% } else { %>
+            <a href="/login" class="nav-item nav-link <%= link === 'login' ? 'active' : '' %>"><%= resources.login %></a>
+          <% } %>
+
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <span class="<%=resources.iconLink%>"></span>
+              <%=resources.language%>
+            </a>
+            <div class="dropdown-menu m-0 dark">
+              <a href="" class="dropdown-item changeLang  " onclick="changeLanguage('az')">
+                <span class="fi fi-az"></span> Az
+              </a>
+              <a href="" class="dropdown-item changeLang " onclick="changeLanguage('de')">
+                <span class="fi fi-de"></span> De
+              </a>
+            </div>
+          </div>
+
+          <button id="darkModeButton" style="text-align: left;" onclick="toggleDarkMode()">
+            <i id="darkModeIcon" class="fas fa-moon  kassey"></i>
+          </button>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<script>
+  function changeLanguage(lang) {
+    var currentUrl = encodeURIComponent(window.location.href);
+
+    // Modify the href attribute of each dropdown item
+    var dropdownItems = document.getElementsByClassName('changeLang');
+    for (var i = 0; i < dropdownItems.length; i++) {
+      var dropdownItem = dropdownItems[i];
+      var returnUrl = dropdownItem.getAttribute('data-lang') === lang ? currentUrl : 'CurentUrl';
+      var modifiedUrl = '/changeLanguage?lang=' + lang + '&returnUrl=' + currentUrl;
+      dropdownItem.setAttribute('href', modifiedUrl);
+    }
+  }
+
+  
+  function toggleDarkMode() {
+    var body = document.body;
+    body.classList.toggle('dark-mode');
+
+ 
+    var logoImage = document.getElementById('logoImage');
+    var darkModeIcon = document.getElementById('darkModeIcon');
+    darkModeIcon.classList.toggle('fa-moon');
+    darkModeIcon.classList.toggle('fa-sun');
+
+ 
+  }
+
+</script>
+<style>
+  .navbar-brand img {
+    width: 160px !important;
+    height: 60px !important;
+    margin-right: 10px !important;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+
+  .custom-dropdown-toggle {
+    background: none;
+    border: none;
+    color: #000;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .custom-dropdown-menu {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu {
+    min-width: 5rem !important;
+  }
+
+  .language-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .dark-mode .nav-link{
+    color: white !important;
+  }
+  .language-dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  .dark-mode .darkMenuIcon{
+    background-color:white;
+  }
+  #darkModeButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  #darkModeIcon {
+    color: #000000;
+    font-size: 20px;
+  }
+  .dark-mode .dark{
+    background-color:#1c1c1c !important;
+    color: #1c1c1c;
+  }
+  .dark-mode #darkModeIcon {
+    color: gold;
+  }
+  
+  
+</style>

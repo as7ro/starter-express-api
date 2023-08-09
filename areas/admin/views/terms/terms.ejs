@@ -1,0 +1,158 @@
+<style>
+    .pointer {
+        cursor: pointer;
+      }
+    </style>
+    
+    
+    <%- include("../partials/_nav") %>
+    
+        <!-- Main Content -->
+        <div class="container mt-4">
+            <h1>Qaydalar səhifəsi</h1>
+            <div class="card mt-4 ">
+                <div class="card-header bg-primary text-light pointer"onclick="toggleCardContent()">
+                   Qayda elave etmek üçün klik edin.
+                </div>
+                <div class="card-body bg-dark" id="cardContent" style="display: none;">
+    
+                    <form action="/admin/terms" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label text-light">Qaydanın adı Azərbaycan dilində </label>
+                            <input type="text" class="form-control" placeholder="basliq Az" id="name" name="termsNameAz">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label text-light">Qaydanın adı Alman dilində</label>
+                            <input type="text" class="form-control" placeholder="basliq De" id="name" name="termsNameGe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-light">Qaydanın içəriyi Azərbaycan dilində</label>
+                            <textarea type="text" class="form-control" placeholder="içərik Az" id="descAz"  name="termsDescAz"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-light">Qaydanın içəriyi Alman dilində</label>
+                            <textarea type="text" class="form-control" placeholder="içərik De" id="descGe" name="termsDescGe"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">əlavə et</button>
+                    </form>
+                </div>
+            </div>
+         
+            <!-- Kullanıcı Listesi -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    Mövcud qaydalar
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ad Azərbaycan dilində</th>
+                                <th>ad Alman dilində</th>
+                                <th>ayarlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <p class="d-none">
+                                <%= count=1 %>
+                            </p>
+                            <%for(term of terms) { %>
+                                <tr>
+                                    <td>
+                                        <%=count++%>
+                                    </td>
+                                    <td>
+                                        <%=term.termsNameAz %>
+                                    </td>
+                                    <td>
+                                        <%=term.termsNameGe %>
+                                    </td>
+                                   
+    
+                                    <td  >
+                                        <a href="terms/<%=term._id %>" class="btn btn-success detail-btn"><i class="fa fa-eye"></i></a>
+    
+                                        <a href="terms/update/<%=term._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                        <form class="my-1" id="deleteForm" action="terms/delete/<%=term._id%>" method="POST">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                              <i class="fa fa-trash"></i> 
+                                            </button>
+                                          </form>
+    
+    
+                                    </td>
+                                </tr>
+                                <% } %>
+    
+                                    <% %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Həqiqətən silmək istəyirsən?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kullanıcı Ekleme Formu -->
+    
+        </div>
+    
+        <script>
+            var confirmDeleteButton = document.getElementById("confirmDeleteButton");
+            var deleteForm = document.getElementById("deleteForm");
+    
+            confirmDeleteButton.addEventListener("click", function () {
+                deleteForm.submit();
+            });
+    
+    
+    
+            function toggleCardContent() {
+                const cardContent = document.getElementById("cardContent");
+                if (cardContent.style.display === "none") {
+                    cardContent.style.display = "block";
+                } else {
+                    cardContent.style.display = "none";
+                }
+            }
+            function toggleCardContentCat() {
+                const cardContent1 = document.getElementById("cardContent1");
+                if (cardContent1.style.display === "none") {
+                    cardContent1.style.display = "block";
+                } else {
+                    cardContent1.style.display = "none";
+                }
+            }
+        </script>
+     <script src="/ckeditor/ckeditor.js"></script>
+     <script>
+ 
+
+       CKEDITOR.replace('descAz',{
+       
+       removePlugins: 'trackchanges',
+       entities: false,
+     });
+     CKEDITOR.replace('descGe',{
+       
+       removePlugins: 'trackchanges',
+       entities: false,
+     });
+     </script>
+        <%- include("../partials/_footer") %>
