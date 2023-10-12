@@ -1,159 +1,194 @@
-<style>
-    .pointer {
-        cursor: pointer;
-      }
-    </style>
-    
-    
-    <%- include("../partials/_nav") %>
-    
-        <!-- Main Content -->
-        <div class="container mt-4">
-            <h1>Layihələr səhifəsi</h1>
-            <div class="card mt-4 ">
-                <div class="card-header bg-primary text-light pointer"onclick="toggleCardContent()">
-                   Layihə elave etmek üçün klik edin.
-                </div>
-                <div class="card-body bg-dark" id="cardContent" style="display: none;">
-    
-                    <form action="/admin/projects" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="name" class="form-label text-light">Layihənin adı Azərbaycan dilində </label>
-                            <input type="text" class="form-control" placeholder="basliq Az" id="name" name="titleAz">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label text-light">Layihənin adı Alman dilində</label>
-                            <input type="text" class="form-control" placeholder="basliq De" id="name" name="titleGe">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-light">Layihənin içəriyi Azərbaycan dilində</label>
-                            <input type="text" class="form-control" placeholder="içərik Az"  name="descriptionAz">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-light">Layihənin içəriyi Alman dilində</label>
-                            <input type="text" class="form-control" placeholder="içərik De"  name="descriptionGe">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-light">Layihə videosunun linki</label>
-                            <input type="text" class="form-control" placeholder="video linki"  name="videoUrl">
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label text-light">Şəkil seçin</label>
-                            <input class="form-control" type="file" id="photo" name="image">
-                        </div>
-                        <button type="submit" class="btn btn-primary">əlavə et</button>
-                    </form>
-                </div>
-            </div>
-         
-            <!-- Kullanıcı Listesi -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    Mövcud Layihələr
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>başlıq Azərbaycan dilində</th>
-                                <th>başlıq Alman dilində</th>
-                                <th>ayarlar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <p class="d-none">
-                                <%= count=1 %>
-                            </p>
-                            <%for(project of projects) { %>
-                                <tr>
-                                    <td>
-                                        <%=count++%>
-                                    </td>
-                                    <td>
-                                        <%=project.titleAz %>
-                                    </td>
-                                    <td>
-                                        <%=project.titleGe %>
-                                    </td>
-                                   
-    
-                                    <td  >
-                                        <a href="project/<%=project._id %>" class="btn btn-success detail-btn"><i class="fa fa-eye"></i></a>
-    
-                                        <a href="project/update/<%=project._id %>" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                        <form class="my-1" id="deleteForm<%= project._id %>" action="project/delete/<%=project._id%>" method="POST">
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal<%= project._id %>">
-                                              <i class="fa fa-trash"></i> 
-                                            </button>
-                                          </form>
-    
-    
-                                    </td>
-                                </tr>
-                                <% } %>
-    
-                                    <% %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal fade"  id="confirmDeleteModal<%= project._id %>" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Həqiqətən silmək istəyirsən?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
-                            <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Kullanıcı Ekleme Formu -->
-    
-        </div>
-    
-        <script>
-            var confirmDeleteButtons = document.querySelectorAll(".btn-danger");
-            confirmDeleteButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        var formId = button.parentElement.id; // "deleteForm" öğesinin ID'sini alır
-        var form = document.getElementById(formId); // Benzersiz "deleteForm" öğesini seçer
-        form.submit();
-    });
-});
-            var confirmDeleteButton = document.getElementById("confirmDeleteButton");
-            var deleteForm = document.getElementById("deleteForm");
-    
-            confirmDeleteButton.addEventListener("click", function () {
-                deleteForm.submit();
-            });
-    
-    
-    
-            function toggleCardContent() {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="path-to-your-styles.css">
+  <title>Layihələr səhifəsi</title>
+</head>
+
+<body>
+  <%- include("../partials/_nav") %>
+
+  <div class="container mt-4">
+    <h1>Layihələr səhifəsi</h1>
+
+    <div class="card mt-4">
+      <div class="card-header bg-primary text-light pointer" onclick="toggleCardContent()">
+        Layihə əlavə etmək üçün klik edin.
+      </div>
+      <div class="card-body bg-dark" id="cardContent" style="display: none;">
+        <form action="/admin/projects" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="titleAz" class="form-label text-light">Layihənin adı Azərbaycan dilində</label>
+            <input type="text" class="form-control" id="titleAz" name="titleAz" placeholder="Başlıq Az">
+          </div>
+          <div class="mb-3">
+            <label for="titleGe" class="form-label text-light">Layihənin adı Alman dilində</label>
+            <input type="text" class="form-control" id="titleGe" name="titleGe" placeholder="Başlıq De">
+          </div>
+          <div class="mb-3">
+            <label for="descriptionAz" class="form-label text-light">Layihənin içəriyi Azərbaycan dilində</label>
+            <input type="text" class="form-control" name="descriptionAz" placeholder="İçərik Az">
+          </div>
+          <div class="mb-3">
+            <label for="descriptionGe" class="form-label text-light">Layihənin içəriyi Alman dilində</label>
+            <input type="text" class="form-control" name="descriptionGe" placeholder="İçərik De">
+          </div>
+          <div class="mb-3">
+            <label for="videoUrl" class="form-label text-light">Layihə videosunun linki</label>
+            <input type="text" class="form-control" name="videoUrl" placeholder="Video linki">
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label text-light">Şəkil seçin</label>
+            <input type="file" class="form-control" id="image" name="image">
+          </div>
+          <button type="submit" class="btn btn-primary">Əlavə et</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        Mövcud Layihələr
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>başlıq Azərbaycan dilində</th>
+              <th>başlıq Alman dilində</th>
+              <th>ayarlar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let count = 1; %>
+            <% for (let i = 0; i < projects.length; i++) { %>
+            <tr>
+              <td><%= count++ %></td>
+              <td><%= projects[i].titleAz %></td>
+              <td><%= projects[i].titleGe %></td>
+              <td>
+                <a href="project/<%= projects[i]._id %>" class="btn btn-success detail-btn">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <a href="project/update/<%= projects[i]._id %>" class="btn btn-primary">
+                  <i class="fa fa-pencil-alt"></i>
+                </a>
+                <form class="my-1" action="project/delete/<%= projects[i]._id %>" method="POST">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal<%= projects[i]._id %>">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% for (let i = 0; i < projects.length; i++) { %>
+    <div class="modal fade" id="confirmDeleteModal<%= projects[i]._id %>" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Sil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Həqiqətən silmək istəyirsən?</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ləğv et</button>
+            <form id="deleteForm<%= projects[i]._id %>" class="my-1" action="project/delete/<%= projects[i]._id %>" method="POST">
+              <button type="button" class="btn btn-danger delete-item" id="confirmDeleteButton">Sil</button>
+            </form>
+            <script>
+              tinymce.init({
+                selector: '#descriptionAz , #descriptionDe',
+
+                height: 500,
+                plugins: 'link image table',
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | table',
+              });
+            </script>
+            <script>
+              function toggleCardContent() {
                 const cardContent = document.getElementById("cardContent");
                 if (cardContent.style.display === "none") {
-                    cardContent.style.display = "block";
+                  cardContent.style.display = "block";
                 } else {
-                    cardContent.style.display = "none";
+                  cardContent.style.display = "none";
                 }
-            }
-            function toggleCardContentCat() {
+              }
+
+              function toggleCardContentCat() {
                 const cardContent1 = document.getElementById("cardContent1");
                 if (cardContent1.style.display === "none") {
-                    cardContent1.style.display = "block";
+                  cardContent1.style.display = "block";
                 } else {
-                    cardContent1.style.display = "none";
+                  cardContent1.style.display = "none";
                 }
-            }
-        </script>
-    
-        <%- include("../partials/_footer") %>
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <script>
+    tinymce.init({
+      selector: '#descriptionAz , #descriptionDe',
+
+      height: 500,
+      plugins: 'link image table',
+      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | table',
+    });
+  </script>
+  <script>
+    var confirmDeleteButtons = document.querySelectorAll(".delete-item"); // Tüm "Sil" düğmelerini seçer
+
+    confirmDeleteButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        var formId = button.parentElement.id; // Formun ID'sini alır
+        var form = document.getElementById(formId); // Benzersiz formu seçer
+        form.submit();
+      });
+    });
+    var confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    var deleteForm = document.getElementById("deleteForm");
+
+    confirmDeleteButton.addEventListener("click", function() {
+      deleteForm.submit();
+    });
+
+
+
+    function toggleCardContent() {
+      const cardContent = document.getElementById("cardContent");
+      if (cardContent.style.display === "none") {
+        cardContent.style.display = "block";
+      } else {
+        cardContent.style.display = "none";
+      }
+    }
+
+    function toggleCardContentCat() {
+      const cardContent1 = document.getElementById("cardContent1");
+      if (cardContent1.style.display === "none") {
+        cardContent1.style.display = "block";
+      } else {
+        cardContent1.style.display = "none";
+      }
+    }
+  </script>
+  <%- include("../partials/_footer") %>
+</body>
+
+</html>

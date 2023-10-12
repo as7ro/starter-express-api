@@ -6,6 +6,10 @@
       width: 100%;
     }
 
+    .xeber pre{
+      overflow: hidden !important;
+    }
+
     .pagination {
       display: flex;
       justify-content: center;
@@ -109,7 +113,7 @@
                       <% if (n.images && n.images.length> 0) { %>
                         <img class="card-img-top" src="<%= n.images[0].url %>" alt="">
                         <% } %>
-                          <div class="card-body" style="padding: 10px;
+                          <div class="card-body xeber" style="padding: 10px;
                             padding-bottom: 0px; height: 155px;">
                             <h6 style="color:#001329; font-size: small;">
                               <%=n.formattedDate%>
